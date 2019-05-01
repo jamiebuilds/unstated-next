@@ -1,0 +1,45 @@
+{
+	"name": "unstated-next",
+	"version": "0.0.0",
+	"description": "200 bytes to never think about React state management libraries ever again",
+	"source": "src/unstated-next.tsx",
+	"main": "dist/unstated-next.js",
+	"module": "dist/unstated-next.mjs",
+	"unpkg": "dist/unstated-next.umd.js",
+	"types": "dist/unstated-next.d.ts",
+	"amdName": "UnstatedNext",
+	"sideEffects": false,
+	"scripts": {
+		"format": "prettier --write '**'",
+		"example": "parcel example/index.html --out-dir example/dist",
+		"build": "rm -rf dist && microbundle --external react --globals react=React --strict --no-compress",
+		"test": "ava"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8.15",
+		"@types/react-dom": "^16.8.4",
+		"ava": "^1.4.1",
+		"husky": "^2.1.0",
+		"lint-staged": "^8.1.5",
+		"microbundle": "^0.11.0",
+		"prettier": "^1.17.0",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"ts-node": "^8.1.0",
+		"typescript": "^3.4.5"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*": [
+			"prettier --write",
+			"git add"
+		]
+	}
+}

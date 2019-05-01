@@ -1,0 +1,13 @@
+{
+	"useTabs": true,
+	"semi": false,
+	"trailingComma": "all",
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"useTabs": false
+			}
+		}
+	]
+}
