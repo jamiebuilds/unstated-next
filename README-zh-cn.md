@@ -1,34 +1,34 @@
 # Unstated Next
 
-> 200 bytes to never think about React state management libraries ever again
+> 永远不必再考虑 React 状态管理了，仅仅 200 字节的状态管理终极解决方案。
 
-- **React Hooks** _use them for all your state management._
+- **React Hooks** _用做你所有的状态管理。_
 - **~200 bytes** _min+gz._
-- **Familiar API** _just use React as intended._
-- **Minimal API** _it takes 5 minutes to learn._
-- **Written in TypeScript** _and will make it easier for you to type your React code._
+- **熟悉的 API** _仅仅使用了 React。_
+- **最小 API** _只需 5 分钟学习。_
+- **TypeScript 编写** _使你更容易编写 React 代码。_
 
-But, the most important question: Is this better than Redux? Well...
+但是，最重要的问题是：这比 Redux 更好吗？ 答案是。
 
-- **It's smaller.** _It's 40x smaller._
-- **It's faster.** _Componentize the problem of performance._
-- **It's easier to learn.** _You already will have to know React Hooks & Context, just use them, they rock._
-- **It's easier to integrate.** _Integrate one component at a time, and easily integrate with every React library._
-- **It's easier to test.** _Testing reducers is a waste of your time, make it easier to test your React components._
-- **It's easier to typecheck.** _Designed to make most of your types inferable._
-- **It's minimal.** _It's just React._
+- **它更小。** _比 Redux 小 40 倍。_
+- **它更快。** _组件性能问题。_
+- **它更容易学习。** _你必须已经知道 React Hooks 和 Context 。只需使用它们，它们就会嗨起来。_
+- **更容易集成。** _一次集成一个组件，并且轻松与每个 React 库集成。_
+- **它更容易测试。** _测试 reducers 纯属浪费你的时间，这个库使你更容易测试 React 组件。_
+- **它更容易进行类型检查。** _旨在使你的大多数类型可推断。_
+- **它是最小的。** _仅仅使用了 React 。_
 
-So you decide.
+你自己看着办吧！
 
-English | [中文](README-zh-cn.md)
+[English](README.md) | 中文
 
-## Install
+## 安装
 
 ```sh
 npm install --save unstated-next
 ```
 
-## Example
+## 示例
 
 ```js
 import React, { useState } from "react"
@@ -116,12 +116,11 @@ function ChildComponent() {
 }
 ```
 
-## Guide
+## 指南
 
-If you've never used React Hooks before, I recommend pausing and going to read
-through [the excellent docs on the React site](https://reactjs.org/docs/hooks-intro.html).
+如果你以前从未使用过 React Hooks，我不建议你往下看，请先阅读 [React 官网的 React Hooks 文档]（https://reactjs.org/docs/hooks-intro.html）。
 
-So with hooks you might create a component like this:
+首先，使用 hooks，你可以创建这样一个组件：
 
 ```js
 function CounterDisplay() {
@@ -138,8 +137,7 @@ function CounterDisplay() {
 }
 ```
 
-Then if you want to share the logic behind the component, you could pull it out
-into a custom hook:
+然后，如果你想共享组件的逻辑，你可以把它写在组件外面，自定义一个 hook:
 
 ```js
 function useCounter() {
@@ -161,9 +159,9 @@ function CounterDisplay() {
 }
 ```
 
-But what if you want to share the state in addition to the logic, what do you do?
+但是，除了共享逻辑之外，你还想共享状态，你会怎么做？
 
-This is where context comes into play:
+这个时候，context 就发挥了作用：
 
 ```js
 function useCounter() {
@@ -197,11 +195,11 @@ function App() {
 }
 ```
 
-This is great, it's perfect, more people should write code like this.
+这很棒，也很完美，更多人应该编写这样的代码。
 
-But sometimes we all need a little bit more structure and intentional API design in order to get it consistently right.
+但有时我们需要更多的结构和特定的 API 设计才能使其始终正确。
 
-By introducing the `createContainer()` function, you can think about your custom hooks as "containers" and have an API that's clear and prevents you from using it wrong.
+通过引入 `createContainer()` 函数，你可以将自定义 hooks 作为 containers，并且定义明确的 API，防止错误使用。
 
 ```js
 import { createContainer } from "unstated-next"
@@ -236,7 +234,7 @@ function App() {
 }
 ```
 
-Here's the diff of that change:
+下面是前后的对比：
 
 ```diff
 - import { createContext, useContext } from "react"
@@ -271,13 +269,13 @@ Here's the diff of that change:
   }
 ```
 
-If you're using TypeScript (which I encourage to to learn more about if you are not), this also has the benefit of making TypeScript's built-in inference work better. As long as your custom hook is typed, then everything else will just work.
+如果你正在使用 TypeScript（我鼓励你了解更多关于它的信息），这也有助于 TypeScript 的内置推断做得更好。 只要你编写自定义 hook ,其他所有内容都可以正常工作。
 
-## Tips
+## 提示
 
-### Tip #1: Composing Containers
+### 提示 #1: 组合 Containers
 
-Because we're just working with custom React hooks, we can compose containers inside of other hooks.
+因为我们只使用了自定义 React hooks，所以可以在其他 hooks 内部组合 containers。
 
 ```js
 function useCounter() {
@@ -296,9 +294,9 @@ function useResettableCounter() {
 }
 ```
 
-### Tip #2: Keeping Containers Small
+### 提示 #2: 保持 Containers 很小
 
-This can be useful for keeping your containers small and focused. Which can be important if you want to code split the logic in your containers: Just move them to their own hooks and keep just the state in containers.
+这对于保持 containers 小而集中非常有用。 如果你想在 containers 中对代码进行逻辑拆分，那么这一点非常重要。只需将它们移动到自己的 hooks 中，仅保存 containers 的状态即可。
 
 ```js
 function useCount() {
@@ -316,13 +314,13 @@ function useCounter() {
 }
 ```
 
-### Tip #3: Optimizing components
+### 提示 #3: 优化组件
 
-There's no "optimizing" `unstated-next` to be done, all of the optimizations you might do would be standard React optimizations.
+`unstated-next` 无需优化。所有你要做的优化，都是标准的 React 优化。
 
-#### 1) Optimizing expensive sub-trees by splitting the component apart
+#### 1) 通过拆分组件来优化费时的子树
 
-**Before:**
+**优化前:**
 
 ```js
 function CounterDisplay() {
@@ -344,7 +342,7 @@ function CounterDisplay() {
 }
 ```
 
-**After:**
+**优化后:**
 
 ```js
 function ExpensiveComponent() {
@@ -372,15 +370,14 @@ function CounterDisplay() {
 }
 ```
 
-#### 2) Optimizing expensive operations with useMemo()
+#### 2) 使用 useMemo() 优化费时的操作
 
-**Before:**
+**优化前:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
-
-  // Recalculating this every time `counter` changes is expensive
+  // 每次 `counter` 改变都要重新计算这个值，非常费时
   let expensiveValue = expensiveComputation(props.input)
 
   return (
@@ -393,13 +390,12 @@ function CounterDisplay(props) {
 }
 ```
 
-**After:**
+**优化后:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
-
-  // Only recalculate this value when its inputs have changed
+  // 仅在输入更改时重新计算这个值
   let expensiveValue = useMemo(() => {
     return expensiveComputation(props.input)
   }, [props.input])
@@ -414,9 +410,9 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 3) Reducing re-renders using React.memo() and useCallback()
+#### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
 
-**Before:**
+**优化前:**
 
 ```js
 function useCounter() {
@@ -440,7 +436,7 @@ function CounterDisplay(props) {
 }
 ```
 
-**After:**
+**优化后:**
 
 ```js
 function useCounter() {
