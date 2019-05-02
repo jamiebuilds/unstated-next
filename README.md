@@ -269,7 +269,7 @@ Here's the diff of that change:
   }
 ```
 
-If you're using TypeScript (which I encourage to to learn more about if you are not), this also has the benefit of making TypeScript's built-in inference work better. As long as your custom hook is typed, then everything else will just work.
+If you're using TypeScript (which I encourage you to learn more about if you are not), this also has the benefit of making TypeScript's built-in inference work better. As long as your custom hook is typed, then everything else will just work.
 
 ## Tips
 
