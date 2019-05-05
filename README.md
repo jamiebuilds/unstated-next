@@ -306,7 +306,7 @@ function useCount() {
 let Count = createContainer(useCount)
 
 function useCounter() {
-  let [count, setCount] = Counter.useContainer()
+  let [count, setCount] = Count.useContainer()
   let decrement = () => setCount(count - 1)
   let increment = () => setCount(count + 1)
   let reset = () => setCount(0)
