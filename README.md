@@ -20,6 +20,8 @@ But, the most important question: Is this better than Redux? Well...
 
 So you decide.
 
+### [See Migration From Unstated docs &rarr;](#migration-from-unstated)
+
 ## Install
 
 ```sh
@@ -64,6 +66,7 @@ function App() {
 
 render(<App />, document.getElementById("root"))
 ```
+
 
 ## API
 
@@ -465,3 +468,32 @@ function CounterDisplay(props) {
   return <CounterDisplayInner {...counter} />
 }
 ```
+
+## Relation to Unstated
+
+I consider this library the spiritual successor to [Unstated](https://github.com/jamiebuilds/unstated). I created Unstated because I believed that React was really great at state management already and the only missing piece was sharing state and logic easily. So I created Unstated to be the "minimal" solution to sharing React state and logic.
+
+However, with Hooks, React has become much better at sharing state and logic. To the point that I think Unstated has become an unnecessary abstraction.
+
+**HOWEVER**, I think many developers have struggled seeing how to share state and logic with React Hooks for "application state". That may just be an issue of documentation and community momentum, but I think that an API could help bridge that mental gap.
+
+That API is what Unstated Next is. Instead of being the "Minimal API for sharing state and logic in React", it is now the "Minimal API for understanding shared state and logic in React".
+
+I've always been on the side of React. I want React to win. I would like to see the community abandon state management libraries like Redux, and find better ways of making use of React's built-in toolchain.
+
+If instead of using Unstated, you just want to use React itself, I would highly encourage that. Write blog posts about it! Give talks about it! Spread your knowledge in the community.
+
+## Migration from `unstated`
+
+I've intentionally published this as a separate package name because it is a complete reset on the API. This way you can have both installed and migrate incrementally.
+
+Please provide me with feedback on that migration process, because over the next few months I hope to take that feedback and do two things:
+
+- Make sure `unstated-next` fulfills all the needs of `unstated` users.
+- Make sure `unstated` has a clean migration process towards `unstated-next`. 
+
+I may choose to add APIs to either library to make life easier for developers. For `unstated-next` I promise that the added APIs will be as minimal as possible and I'll try to keep the library small.
+
+In the future, I will likely merge `unstated-next` back into `unstated` as a new major version. `unstated-next` will still exist so that you can have both `unstated@2` and `unstated-next` installed. Then when you are done with the migration, you can update to `unstated@3` and remove `unstated-next` (being sure to update all your imports as you do... should be just a find-and-replace).
+
+Even though this is a major new API change, I hope that I can make this migration as easy as possible on you. I'm optimizing for you to get to using the latest React Hooks APIs and not for preserving code written with `Unstated.Container`'s. Feel free to provide feedback on how that could be done better.
