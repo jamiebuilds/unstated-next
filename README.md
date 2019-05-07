@@ -1,3 +1,12 @@
+<span align="right">
+  <strong>
+    <a href="README.md">English</a> |
+    <a href="README-zh-cn.md">中文</a>
+  </strong>
+  <br/>
+  <sup><em>(Please contribute translations!)</em></sup>
+</span>
+
 # Unstated Next
 
 > 200 bytes to never think about React state management libraries ever again
@@ -19,8 +28,6 @@ But, the most important question: Is this better than Redux? Well...
 - **It's minimal.** _It's just React._
 
 So you decide.
-
-[English](README.md) | [中文](README-zh-cn.md)
 
 ### [See Migration From Unstated docs &rarr;](#migration-from-unstated)
 
