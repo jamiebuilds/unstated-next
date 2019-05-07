@@ -22,7 +22,7 @@
 
 [English](README.md) | [中文](README-zh-cn.md)
 
-### [查看 Unstated 迁移手册 &rarr;](#%E6%9F%A5%E7%9C%8B-unstated-%E8%BF%81%E7%A7%BB%E6%89%8B%E5%86%8C-rarr)
+### [查看 Unstated 迁移手册 &rarr;](#%E4%BB%8E-unstated-%E8%BF%81%E7%A7%BB)
 
 ## 安装
 
