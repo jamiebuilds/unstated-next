@@ -1,3 +1,12 @@
+<span align="right">
+  <strong>
+    <a href="README.md">English</a> |
+    <a href="README-zh-cn.md">中文</a>
+  </strong>
+  <br/>
+  <sup><em>(Please contribute translations!)</em></sup>
+</span>
+
 # Unstated Next
 
 > 永远不必再考虑 React 状态管理了，仅仅 200 字节的状态管理解决方案。
@@ -19,8 +28,6 @@
 - **它是最小的。** _仅仅使用了 React 。_
 
 你自己看着办吧！
-
-[English](README.md) | [中文](README-zh-cn.md)
 
 ### [查看 Unstated 迁移手册 &rarr;](#%E4%BB%8E-unstated-%E8%BF%81%E7%A7%BB)
 
