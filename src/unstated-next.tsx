@@ -1,10 +1,10 @@
 import React from "react"
 
-interface ContainerProviderProps {
+export interface ContainerProviderProps {
 	children: React.ReactNode
 }
 
-interface Container<Value> {
+export interface Container<Value> {
 	Provider: React.ComponentType<ContainerProviderProps>
 	useContainer: () => Value
 }
