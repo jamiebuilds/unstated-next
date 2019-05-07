@@ -1,11 +1,11 @@
-<span align="right">
+<p align="right">
   <strong>
     <a href="README.md">English</a> |
     <a href="README-zh-cn.md">中文</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
-</span>
+</p>
 
 # Unstated Next
 
