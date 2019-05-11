@@ -1,7 +1,8 @@
-<p align="right">
+﻿<p align="right">
   <strong>
     <a href="README.md">English</a> |
-    <a href="README-zh-cn.md">中文</a>
+    <a href="README-zh-cn.md">中文</a> |
+    <a href="README-ru-ru.md">Русский</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -9,35 +10,35 @@
 
 # Unstated Next
 
-> 200 bytes to never think about React state management libraries ever again
+> 200 байт, чтобы навсегда забыть о библиотеках для управления состоянием React-компонентов
 
-- **React Hooks** _use them for all your state management._
-- **~200 bytes** _min+gz._
-- **Familiar API** _just use React as intended._
-- **Minimal API** _it takes 5 minutes to learn._
-- **Written in TypeScript** _and will make it easier for you to type your React code._
+- **React-хуки**: _это все, что нужно для управления состоянием._
+- **~200 байт**, _min+gz._
+- **Знакомый API**: _просто пользуйтесь React, как обычно._
+- **Минимальный API**: _хватит пяти минут, чтобы разобраться._
+- **Написан на TypeScript**, _чтобы обеспечить автоматический вывод типов в коде ваших компонентов React._
 
-But, the most important question: Is this better than Redux? Well...
+Главный вопрос: чем он лучше, чем Redux? Ну...
 
-- **It's smaller.** _It's 40x smaller._
-- **It's faster.** _Componentize the problem of performance._
-- **It's easier to learn.** _You already will have to know React Hooks & Context, just use them, they rock._
-- **It's easier to integrate.** _Integrate one component at a time, and easily integrate with every React library._
-- **It's easier to test.** _Testing reducers is a waste of your time, make it easier to test your React components._
-- **It's easier to typecheck.** _Designed to make most of your types inferable._
-- **It's minimal.** _It's just React._
+- **Он меньше.** _Он в 40 раз меньше._
+- **Он быстрее.** _Изолируйте проблемы производительности на уровне компонентов._
+- **Он проще в изучении.** _Вам в любом случае нужно уметь пользоваться React-хуками и контекстом, они классные._
+- **Он проще в интеграции.** _Подключайте по одному компоненту за раз, не ломая совместимости с другими React-библиотеками._
+- **Он проще в тестировании.** _Тестировать отдельно редьюсеры — напрасная трата времени, тестируйте сами React-компоненты._
+- **Он проще с точки зрения типизации.** _Написан так, чтобы максимально задействовать выведение типов._
+- **Он минималистичный.** _Это просто React._
 
-So you decide.
+Вам решать.
 
-### [See Migration From Unstated docs &rarr;](#migration-from-unstated)
+### [См. также: миграция с Unstated &rarr;](#миграция-с-unstated)
 
-## Install
+## Установка
 
 ```sh
 npm install --save unstated-next
 ```
 
-## Example
+## Пример
 
 ```js
 import React, { useState } from "react"
@@ -126,12 +127,12 @@ function ChildComponent() {
 }
 ```
 
-## Guide
+## Руководство
 
-If you've never used React Hooks before, I recommend pausing and going to read
-through [the excellent docs on the React site](https://reactjs.org/docs/hooks-intro.html).
+Если вы пока не знакомы с React-хуками, рекомендую прервать чтение и ознакомиться с
+[прекрасной документацией на сайте React](https://reactjs.org/docs/hooks-intro.html).
 
-So with hooks you might create a component like this:
+Итак, с помощью хуков вы можете написать что-нибудь вроде такого компонента:
 
 ```js
 function CounterDisplay() {
@@ -148,8 +149,8 @@ function CounterDisplay() {
 }
 ```
 
-Then if you want to share the logic behind the component, you could pull it out
-into a custom hook:
+Если логику компонента требуется использовать в нескольких местах, ее можно вынести
+в отдельный кастомный хук:
 
 ```js
 function useCounter() {
@@ -171,9 +172,8 @@ function CounterDisplay() {
 }
 ```
 
-But what if you want to share the state in addition to the logic, what do you do?
-
-This is where context comes into play:
+Но что делать, когда вам требуется общее состояние, а не только логика?
+Здесь пригодится контекст:
 
 ```js
 function useCounter() {
@@ -207,11 +207,11 @@ function App() {
 }
 ```
 
-This is great, it's perfect, more people should write code like this.
+Это замечательно и прекрасно; чем больше людей будет писать в таком стиле, тем лучше.
 
-But sometimes we all need a little bit more structure and intentional API design in order to get it consistently right.
+Однако стоит внести еще чуть больше структуры и ясности, чтобы API предельно четко выражал ваши намерения. 
 
-By introducing the `createContainer()` function, you can think about your custom hooks as "containers" and have an API that's clear and prevents you from using it wrong.
+Для этого мы добавили функцию `createContainer()`, чтобы можно было рассматривать ваши кастомные хуки как "контейнеры", чтобы наш четкий и ясный API просто невозможно было использовать неправильно.
 
 ```js
 import { createContainer } from "unstated-next"
@@ -246,7 +246,7 @@ function App() {
 }
 ```
 
-Here's the diff of that change:
+Сравните текст компонента до и после наших изменений:
 
 ```diff
 - import { createContext, useContext } from "react"
@@ -281,13 +281,13 @@ Here's the diff of that change:
   }
 ```
 
-If you're using TypeScript (which I encourage you to learn more about if you are not), this also has the benefit of making TypeScript's built-in inference work better. As long as your custom hook is typed, then everything else will just work.
+Если вы пишете на TypeScript (а если нет — настоятельно рекомендую ознакомиться с ним), вы ко всему прочему получаете более качественный вывод типов. Если ваш кастомный хук строго типизирован, вывод всех остальных типов сработает автоматически.
 
-## Tips
+## Советы
 
-### Tip #1: Composing Containers
+### Совет #1: Объединение контейнеров
 
-Because we're just working with custom React hooks, we can compose containers inside of other hooks.
+Поскольку мы имеем дело с кастомными хуками, мы можем объединять контейнеры внутри других хуков.
 
 ```js
 function useCounter() {
@@ -306,9 +306,9 @@ function useResettableCounter() {
 }
 ```
 
-### Tip #2: Keeping Containers Small
+### Совет #2: Используйте маленькие контейнеры
 
-This can be useful for keeping your containers small and focused. Which can be important if you want to code split the logic in your containers: Just move them to their own hooks and keep just the state in containers.
+Контейнеры лучше всего делать маленькими и четко сфокусированными на конкретной задаче. Если вам нужна дополнительная бизнес-логика в контейнерах — выносите новые операции в отдельные хуки, а состояние пусть хранится в контейнерах.
 
 ```js
 function useCount() {
@@ -326,13 +326,13 @@ function useCounter() {
 }
 ```
 
-### Tip #3: Optimizing components
+### Совет #3: Оптимизация компонентов
 
-There's no "optimizing" `unstated-next` to be done, all of the optimizations you might do would be standard React optimizations.
+Не существует никакой отдельной "оптимизации" для `unstated-next`, достаточно обычных приемов оптимизации React-компонентов.
 
-#### 1) Optimizing expensive sub-trees by splitting the component apart
+#### 1) Оптимизация тяжелых поддеревьев с помощью разбиения компонентов на части.
 
-**Before:**
+**До:**
 
 ```js
 function CounterDisplay() {
@@ -345,7 +345,7 @@ function CounterDisplay() {
       <div>
         <div>
           <div>
-            <div>SUPER EXPENSIVE RENDERING STUFF</div>
+            <div>СУПЕР НАВОРОЧЕННОЕ ПОДДЕРЕВО КОМПОНЕНТОВ</div>
           </div>
         </div>
       </div>
@@ -354,7 +354,7 @@ function CounterDisplay() {
 }
 ```
 
-**After:**
+**После:**
 
 ```js
 function ExpensiveComponent() {
@@ -362,7 +362,7 @@ function ExpensiveComponent() {
     <div>
       <div>
         <div>
-          <div>SUPER EXPENSIVE RENDERING STUFF</div>
+          <div>СУПЕР НАВОРОЧЕННОЕ ПОДДЕРЕВО КОМПОНЕНТОВ</div>
         </div>
       </div>
     </div>
@@ -382,15 +382,15 @@ function CounterDisplay() {
 }
 ```
 
-#### 2) Optimizing expensive operations with useMemo()
+#### 2) Оптимизация тяжелых операций с помощью хука useMemo()
 
-**Before:**
+**До:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // Recalculating this every time `counter` changes is expensive
+  // Вычислять выражение каждый раз, когда обновляется `counter` — слишком медленно
   let expensiveValue = expensiveComputation(props.input)
 
   return (
@@ -403,13 +403,13 @@ function CounterDisplay(props) {
 }
 ```
 
-**After:**
+**После:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // Only recalculate this value when its inputs have changed
+  // Пересчитываем значение только тогда, когда входные данные изменились
   let expensiveValue = useMemo(() => {
     return expensiveComputation(props.input)
   }, [props.input])
@@ -424,9 +424,9 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 3) Reducing re-renders using React.memo() and useCallback()
+#### 3) Снижаем количество повторных рендеров с помощью React.memo() and useCallback()
 
-**Before:**
+**До:**
 
 ```js
 function useCounter() {
@@ -450,7 +450,7 @@ function CounterDisplay(props) {
 }
 ```
 
-**After:**
+**После:**
 
 ```js
 function useCounter() {
@@ -478,31 +478,31 @@ function CounterDisplay(props) {
 }
 ```
 
-## Relation to Unstated
+## Отношение к Unstated
 
-I consider this library the spiritual successor to [Unstated](https://github.com/jamiebuilds/unstated). I created Unstated because I believed that React was really great at state management already and the only missing piece was sharing state and logic easily. So I created Unstated to be the "minimal" solution to sharing React state and logic.
+Я рассматриваю данную библиотеку как духовного преемника [Unstated](https://github.com/jamiebuilds/unstated). Я сделал Unstated, поскольку был убежден, что React и сам превосходно справлялся с управлением состоянием, и ему не хватало только простого механизма для разделения общего состояния и логики. Поэтому я создал Unstated как "минимальное" решение для данной проблемы.
 
-However, with Hooks, React has become much better at sharing state and logic. To the point that I think Unstated has become an unnecessary abstraction.
+С появлением хуков React стал гораздо лучше в плане выделения общего состояния и логики. Настолько лучше, что, с моей точки зрения, Unstated стал излишней абстракцией.
 
-**HOWEVER**, I think many developers have struggled seeing how to share state and logic with React Hooks for "application state". That may just be an issue of documentation and community momentum, but I think that an API could help bridge that mental gap.
+**ТЕМ НЕ МЕНЕЕ**, я считаю, что многие разработчики слабо представляют, как разделять логику и общее состояние приложения с помощью React-хуков. Это может быть связано просто с недостаточным качеством документации и инерцией сообщества, но я полагаю, что четкий API как раз способен исправить этот недостаток.
 
-That API is what Unstated Next is. Instead of being the "Minimal API for sharing state and logic in React", it is now the "Minimal API for understanding shared state and logic in React".
+Unstated Next и есть этот самый API. Вместо того, чтобы быть "Минимальным API для разделения общего состояния и логики в React", теперь он "Минимальный API для понимания, как разделять общее состояние и логику в React".
 
-I've always been on the side of React. I want React to win. I would like to see the community abandon state management libraries like Redux, and find better ways of making use of React's built-in toolchain.
+Я всегда был на стороне React, и я хочу, чтобы React процветал. Я бы предпочел, чтобы сообщество отказалось от использования библиотек для управления состоянием наподобие Redux, и начало наконец в полную силу использовать встроенные в React инструменты.
 
-If instead of using Unstated, you just want to use React itself, I would highly encourage that. Write blog posts about it! Give talks about it! Spread your knowledge in the community.
+Если вместо того, чтобы использовать Unstated, вы будете просто использовать React — я буду это только приветствовать. Пишите об этом в своих блогах! Выступайте об этом на конференциях! Делитесь своими знаниями с сообществом.
 
-## Migration from `unstated`
+## Миграция с `unstated`
 
-I've intentionally published this as a separate package name because it is a complete reset on the API. This way you can have both installed and migrate incrementally.
+Я нарочно публикую эту библиотеку как отдельный пакет, потому что весь API полностью новый. Поэтому вы можете параллельно установить оба пакета и мигрировать постепенно.
 
-Please provide me with feedback on that migration process, because over the next few months I hope to take that feedback and do two things:
+Поделитесь своими впечатлениями о переходе на `unstated-next`, потому что в течение нескольких следующих месяцев я планирую на базе этой информации сделать две вещи:
 
-- Make sure `unstated-next` fulfills all the needs of `unstated` users.
-- Make sure `unstated` has a clean migration process towards `unstated-next`. 
+- Убедиться, что `unstated-next` удовлетворяет все нужды пользователей `unstated`.
+- Удостовериться, что для `unstated` есть четкий и ясный процесс миграции на `unstated-next`. 
 
-I may choose to add APIs to either library to make life easier for developers. For `unstated-next` I promise that the added APIs will be as minimal as possible and I'll try to keep the library small.
+Возможно, я добавлю какие-то API в старую или новую библиотеку, чтобы упростить жизнь разработчикам. Что касается `unstated-next`, я обещаю, что добавленные API будут минимальными, насколько это возможно, и я приложу все усилия, чтобы библиотека осталась маленькой.
 
-In the future, I will likely merge `unstated-next` back into `unstated` as a new major version. `unstated-next` will still exist so that you can have both `unstated@2` and `unstated-next` installed. Then when you are done with the migration, you can update to `unstated@3` and remove `unstated-next` (being sure to update all your imports as you do... should be just a find-and-replace).
+В будущем, я, вероятно, перенесу код `unstated-next` обратно в `unstated` в качестве новой мажорной версии. `unstated-next` будет по-прежнему доступен, чтобы можно было параллельно пользоваться `unstated@2` и `unstated-next` в одном проекте. Затем, когда вы закончите миграцию, вы сможете обновиться до версии `unstated@3` и удалить `unstated-next` (разумеется, обновив все импорты... поиска и замены должно быть достаточно).
 
-Even though this is a major new API change, I hope that I can make this migration as easy as possible on you. I'm optimizing for you to get to using the latest React Hooks APIs and not for preserving code written with `Unstated.Container`'s. Feel free to provide feedback on how that could be done better.
+Несмотря на кардинальную смену API, я надеюсь, что смогу обеспечить вам максимально простую миграцию, насколько это вообще возможно. Я оптимизирую процесс с точки зрения использования самых последних API React-хуков, а не с точки зрения сохранения кода, написанного с использованием `Unstated.Container`-ов. Буду рад любым замечаниям о том, что можно было бы сделать лучше.
