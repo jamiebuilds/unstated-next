@@ -1,19 +1,24 @@
 import React from "react"
 
-export interface ContainerProviderProps {
+export interface ContainerProviderProps<InitialState> {
 	children: React.ReactNode
+	initialState?: InitialState | null | undefined
 }
 
-export interface Container<Value> {
-	Provider: React.ComponentType<ContainerProviderProps>
+export interface Container<Value, InitialState> {
+	Provider: React.ComponentType<ContainerProviderProps<InitialState | null>>
 	useContainer: () => Value
 }
 
-export function createContainer<Value>(useHook: () => Value): Container<Value> {
+export function createContainer<Value, InitialState>(
+	useHook: (initialState: InitialState | null | undefined) => Value,
+): Container<Value, InitialState> {
 	let Context = React.createContext<Value | null>(null)
 
-	function Provider(props: ContainerProviderProps) {
-		let value = useHook()
+	function Provider(
+		props: ContainerProviderProps<InitialState | null | undefined>,
+	) {
+		let value = useHook(props.initialState)
 		return <Context.Provider value={value}>{props.children}</Context.Provider>
 	}
 
@@ -28,6 +33,8 @@ export function createContainer<Value>(useHook: () => Value): Container<Value> {
 	return { Provider, useContainer }
 }
 
-export function useContainer<Value>(container: Container<Value>): Value {
+export function useContainer<Value, InitialState>(
+	container: Container<Value, InitialState>,
+): Value {
 	return container.useContainer()
 }
