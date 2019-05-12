@@ -85,7 +85,7 @@ render(<App />, document.getElementById("root"))
 import { createContainer } from "unstated-next"
 
 function useCustomHook() {
-  let [value, setInput] = useState()
+  let [value, setValue] = useState()
   let onChange = e => setValue(e.currentTarget.value)
   return { value, onChange }
 }
