@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { Provider, createContainer } from "../src/unstated"
+import { createContainer } from "../src/unstated-next"
 import { render } from "react-dom"
 
 function useCounter() {
-	let [count, setCount] = useState(0)
+	let [count, setCount] = useState(initialState)
 	let decrement = () => setCount(count - 1)
 	let increment = () => setCount(count + 1)
 	return { count, decrement, increment }
@@ -24,14 +24,16 @@ function CounterDisplay() {
 
 function App() {
 	return (
-		<Provider>
+		<Counter.Provider>
 			<CounterDisplay />
-			<div>
+			<Counter.Provider>
 				<div>
-					<CounterDisplay />
+					<div>
+						<CounterDisplay />
+					</div>
 				</div>
-			</div>
-		</Provider>
+			</Counter.Provider>
+		</Counter.Provider>
 	)
 }
 

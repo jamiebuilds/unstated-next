@@ -45,8 +45,8 @@ import React, { useState } from "react"
 import { createContainer } from "unstated-next"
 import { render } from "react-dom"
 
-function useCounter() {
-  let [count, setCount] = useState(0)
+function useCounter(initialState = 0) {
+  let [count, setCount] = useState(initialState)
   let decrement = () => setCount(count - 1)
   let increment = () => setCount(count + 1)
   return { count, decrement, increment }
@@ -69,14 +69,19 @@ function App() {
   return (
     <Counter.Provider>
       <CounterDisplay />
-      <CounterDisplay />
+      <Counter.Provider initialState={2}>
+        <div>
+          <div>
+            <CounterDisplay />
+          </div>
+        </div>
+      </Counter.Provider>
     </Counter.Provider>
   )
 }
 
 render(<App />, document.getElementById("root"))
 ```
-
 
 ## API
 
@@ -101,6 +106,23 @@ let Container = createContainer(useCustomHook)
 function ParentComponent() {
   return (
     <Container.Provider>
+      <ChildComponent />
+    </Container.Provider>
+  )
+}
+```
+
+### `<Container.Provider initialState>`
+
+```js
+function useCustomHook(initialState = "") {
+  let [value, setValue] = useState(initialState)
+  // ...
+}
+
+function ParentComponent() {
+  return (
+    <Container.Provider initialState={"value"}>
       <ChildComponent />
     </Container.Provider>
   )
@@ -209,7 +231,7 @@ function App() {
 
 Это замечательно и прекрасно; чем больше людей будет писать в таком стиле, тем лучше.
 
-Однако стоит внести еще чуть больше структуры и ясности, чтобы API предельно четко выражал ваши намерения. 
+Однако стоит внести еще чуть больше структуры и ясности, чтобы API предельно четко выражал ваши намерения.
 
 Для этого мы добавили функцию `createContainer()`, чтобы можно было рассматривать ваши кастомные хуки как "контейнеры", чтобы наш четкий и ясный API просто невозможно было использовать неправильно.
 
@@ -499,7 +521,7 @@ Unstated Next и есть этот самый API. Вместо того, что
 Поделитесь своими впечатлениями о переходе на `unstated-next`, потому что в течение нескольких следующих месяцев я планирую на базе этой информации сделать две вещи:
 
 - Убедиться, что `unstated-next` удовлетворяет все нужды пользователей `unstated`.
-- Удостовериться, что для `unstated` есть четкий и ясный процесс миграции на `unstated-next`. 
+- Удостовериться, что для `unstated` есть четкий и ясный процесс миграции на `unstated-next`.
 
 Возможно, я добавлю какие-то API в старую или новую библиотеку, чтобы упростить жизнь разработчикам. Что касается `unstated-next`, я обещаю, что добавленные API будут минимальными, насколько это возможно, и я приложу все усилия, чтобы библиотека осталась маленькой.
 

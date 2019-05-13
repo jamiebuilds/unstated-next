@@ -45,8 +45,8 @@ import React, { useState } from "react"
 import { createContainer } from "unstated-next"
 import { render } from "react-dom"
 
-function useCounter() {
-  let [count, setCount] = useState(0)
+function useCounter(initialState = 0) {
+  let [count, setCount] = useState(initialState)
   let decrement = () => setCount(count - 1)
   let increment = () => setCount(count + 1)
   return { count, decrement, increment }
@@ -69,14 +69,19 @@ function App() {
   return (
     <Counter.Provider>
       <CounterDisplay />
-      <CounterDisplay />
+      <Counter.Provider initialState={2}>
+        <div>
+          <div>
+            <CounterDisplay />
+          </div>
+        </div>
+      </Counter.Provider>
     </Counter.Provider>
   )
 }
 
 render(<App />, document.getElementById("root"))
 ```
-
 
 ## API
 
@@ -101,6 +106,23 @@ let Container = createContainer(useCustomHook)
 function ParentComponent() {
   return (
     <Container.Provider>
+      <ChildComponent />
+    </Container.Provider>
+  )
+}
+```
+
+### `<Container.Provider initialState>`
+
+```js
+function useCustomHook(initialState = "") {
+  let [value, setValue] = useState(initialState)
+  // ...
+}
+
+function ParentComponent() {
+  return (
+    <Container.Provider initialState={"value"}>
       <ChildComponent />
     </Container.Provider>
   )
@@ -500,7 +522,7 @@ I've intentionally published this as a separate package name because it is a com
 Please provide me with feedback on that migration process, because over the next few months I hope to take that feedback and do two things:
 
 - Make sure `unstated-next` fulfills all the needs of `unstated` users.
-- Make sure `unstated` has a clean migration process towards `unstated-next`. 
+- Make sure `unstated` has a clean migration process towards `unstated-next`.
 
 I may choose to add APIs to either library to make life easier for developers. For `unstated-next` I promise that the added APIs will be as minimal as possible and I'll try to keep the library small.
 

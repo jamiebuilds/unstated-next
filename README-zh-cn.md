@@ -45,8 +45,8 @@ import React, { useState } from "react"
 import { createContainer } from "unstated-next"
 import { render } from "react-dom"
 
-function useCounter() {
-  let [count, setCount] = useState(0)
+function useCounter(initialState = 0) {
+  let [count, setCount] = useState(initialState)
   let decrement = () => setCount(count - 1)
   let increment = () => setCount(count + 1)
   return { count, decrement, increment }
@@ -69,7 +69,13 @@ function App() {
   return (
     <Counter.Provider>
       <CounterDisplay />
-      <CounterDisplay />
+      <Counter.Provider initialState={2}>
+        <div>
+          <div>
+            <CounterDisplay />
+          </div>
+        </div>
+      </Counter.Provider>
     </Counter.Provider>
   )
 }
@@ -100,6 +106,23 @@ let Container = createContainer(useCustomHook)
 function ParentComponent() {
   return (
     <Container.Provider>
+      <ChildComponent />
+    </Container.Provider>
+  )
+}
+```
+
+### `<Container.Provider initialState>`
+
+```js
+function useCustomHook(initialState = "") {
+  let [value, setValue] = useState(initialState)
+  // ...
+}
+
+function ParentComponent() {
+  return (
+    <Container.Provider initialState={"value"}>
       <ChildComponent />
     </Container.Provider>
   )
