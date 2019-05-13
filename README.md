@@ -1,7 +1,8 @@
-<p align="right">
+﻿<p align="right">
   <strong>
     <a href="README.md">English</a> |
-    <a href="README-zh-cn.md">中文</a>
+    <a href="README-zh-cn.md">中文</a> |
+    <a href="README-ru-ru.md">Русский</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
