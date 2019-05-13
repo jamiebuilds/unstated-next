@@ -10,15 +10,15 @@ export interface Container<Value> {
 }
 
 export function createContainer<Value>(useHook: () => Value): Container<Value> {
-	let Context = React.createContext<Value | null>(null)
+	const Context = React.createContext<Value | null>(null)
 
 	function Provider(props: ContainerProviderProps) {
-		let value = useHook()
+		const value = useHook()
 		return <Context.Provider value={value}>{props.children}</Context.Provider>
 	}
 
 	function useContainer(): Value {
-		let value = React.useContext(Context)
+		const value = React.useContext(Context)
 		if (value === null) {
 			throw new Error("Component must be wrapped with <Container.Provider>")
 		}
