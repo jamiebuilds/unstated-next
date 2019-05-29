@@ -501,6 +501,36 @@ function CounterDisplay(props) {
 }
 ```
 
+#### 4) Wrapping your elements with `useMemo()`
+
+[via Dan Abramov](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
+
+**Before:**
+
+```js
+function CounterDisplay(props) {
+  let counter = Counter.useContainer()
+  let count = counter.count
+  
+  return (
+    <p>You clicked {count} times</p>
+  )
+}
+```
+
+**After:**
+
+```js
+function CounterDisplay(props) {
+  let counter = Counter.useContainer()
+  let count = counter.count
+  
+  return useMemo(() => (
+    <p>You clicked {count} times</p>
+  ), [count])
+}
+```
+
 ## Relation to Unstated
 
 I consider this library the spiritual successor to [Unstated](https://github.com/jamiebuilds/unstated). I created Unstated because I believed that React was really great at state management already and the only missing piece was sharing state and logic easily. So I created Unstated to be the "minimal" solution to sharing React state and logic.
