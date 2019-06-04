@@ -151,7 +151,7 @@ function ChildComponent() {
 
 ## 指南
 
-如果你以前从未使用过 React Hooks，我不建议你往下看，请先阅读 [React 官网的 React Hooks 文档]（https://reactjs.org/docs/hooks-intro.html）。
+如果你以前从未使用过 React Hooks，我不建议你往下看，请先阅读 [React 官网的 React Hooks 文档](https://reactjs.org/docs/hooks-intro.html)。
 
 首先，使用 React Hooks，你可以创建这样一个组件：
 
