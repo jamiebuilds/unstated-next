@@ -7,7 +7,7 @@ export interface ContainerProviderProps<State = void> {
 
 export interface Container<Value, State = void> {
 	Provider: React.ComponentType<ContainerProviderProps<State>>
-	useContainer: () => Value
+	Context: React.Context<Value | null>
 }
 
 export function createContainer<Value, State = void>(
@@ -20,19 +20,15 @@ export function createContainer<Value, State = void>(
 		return <Context.Provider value={value}>{props.children}</Context.Provider>
 	}
 
-	function useContainer(): Value {
-		let value = React.useContext(Context)
-		if (value === null) {
-			throw new Error("Component must be wrapped with <Container.Provider>")
-		}
-		return value
-	}
-
-	return { Provider, useContainer }
+	return { Provider, Context }
 }
 
 export function useContainer<Value, State = void>(
 	container: Container<Value, State>,
-): Value {
-	return container.useContainer()
+) {
+	const value = React.useContext(container.Context)
+	if (value === null) {
+		throw new Error("Component must be wrapped with <Container.Provider>")
+	}
+	return value
 }
