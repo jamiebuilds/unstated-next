@@ -2,7 +2,8 @@
   <strong>
     <a href="README.md">English</a> |
     <a href="README-zh-cn.md">中文</a> |
-    <a href="README-ru-ru.md">Русский</a>
+    <a href="README-ru-ru.md">Русский</a> |
+    <a href="README-th-th.md">ภาษาไทย</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
