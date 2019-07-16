@@ -480,8 +480,8 @@ function CounterDisplay(props) {
 ```js
 function useCounter() {
   let [count, setCount] = useState(0)
-  let decrement = useCallback(() => setCount(count - 1), [count])
-  let increment = useCallback(() => setCount(count + 1), [count])
+  let decrement = useCallback(() => setCount(count => count - 1), [])
+  let increment = useCallback(() => setCount(count => count + 1), [])
   return { count, decrement, increment }
 }
 
