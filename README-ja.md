@@ -4,8 +4,8 @@
     <a href="README-zh-cn.md">中文</a> |
     <a href="README-ru-ru.md">Русский</a> |
     <a href="README-th-th.md">ภาษาไทย</a> |
-    <a href="README-vi-vn.md">Tiếng Việt</a> |
-    <a href="README-ja.md">日本語</a></a>
+    <a href="README-vi-vn.md">Tiếng Việt</a>
+    <a href="README-ja.md">日本語</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -13,35 +13,34 @@
 
 # Unstated Next
 
-> 200 bytes to never think about React state management libraries ever again
+> Reactの状態管理ライブラリについて二度と考えないための200バイト
 
-- **React Hooks** _use them for all your state management._
-- **~200 bytes** _min+gz._
-- **Familiar API** _just use React as intended._
-- **Minimal API** _it takes 5 minutes to learn._
-- **Written in TypeScript** _and will make it easier for you to type your React code._
+- **React Hooks** _すべての状態管理に使いましょう。_
+- **~200バイト** _min+gz._
+- **慣れ親しんだAPI** _普段通りにReactを使うだけです。_
+- **最小限のAPI** _学習時間は５分です。_
+- **TypeScriptで書かれています** _そのため、Reactのコードに型を付けやすいです。_
 
-But, the most important question: Is this better than Redux? Well...
+しかし、最も重要な質問があります： Reduxより優れているのか？　それは…
+- **もっと小さく** _40倍小さいです。_
+- **もっと高速に** _パフォーマンスの問題をコンポーネント化します。_
+- **もっと学習しやすく** _すでにReact HooksとContextを知る必要があり、ただそれらを使うだけです。_
+- **もっと統合しやすく** _一つのコンポーネントを一度で統合できます。そしてすべてのReactライブラリと簡単に統合できます。_
+- **もっとテストしやすく** _reducerをテストすることは無駄です。もっと簡単にReactコンポーネントをテストできます。_
+- **もっと型チェックしやすく** _型のほとんどを推論できるように設計しています。_
+- **最小限に** _それがReactです。_
 
-- **It's smaller.** _It's 40x smaller._
-- **It's faster.** _Componentize the problem of performance._
-- **It's easier to learn.** _You already will have to know React Hooks & Context, just use them, they rock._
-- **It's easier to integrate.** _Integrate one component at a time, and easily integrate with every React library._
-- **It's easier to test.** _Testing reducers is a waste of your time, make it easier to test your React components._
-- **It's easier to typecheck.** _Designed to make most of your types inferable._
-- **It's minimal.** _It's just React._
+そう、決めるのはあなたです。
 
-So you decide.
+### [Unstatedからの移行のドキュメント &rarr;](#migration-from-unstated)
 
-### [See Migration From Unstated docs &rarr;](#migration-from-unstated)
-
-## Install
+## インストール
 
 ```sh
 npm install --save unstated-next
 ```
 
-## Example
+## 例
 
 ```js
 import React, { useState } from "react"
@@ -154,10 +153,9 @@ function ChildComponent() {
 
 ## Guide
 
-If you've never used React Hooks before, I recommend pausing and going to read
-through [the excellent docs on the React site](https://reactjs.org/docs/hooks-intro.html).
+もしこれまでにReact Hooksを使ったことが無ければ、一旦停止し [the excellent docs on the React site](https://reactjs.org/docs/hooks-intro.html)を読むことを推奨します。
 
-So with hooks you might create a component like this:
+hooksを使ってこのようなコンポーネントをあなたは作ったことがあるかもしれないです：
 
 ```js
 function CounterDisplay() {
@@ -174,8 +172,7 @@ function CounterDisplay() {
 }
 ```
 
-Then if you want to share the logic behind the component, you could pull it out
-into a custom hook:
+その後、もしコンポーネントの中のロジックを共有したい場合は、カスタムhooksにすることができます：
 
 ```js
 function useCounter() {
@@ -197,9 +194,9 @@ function CounterDisplay() {
 }
 ```
 
-But what if you want to share the state in addition to the logic, what do you do?
+しかしロジックだけではなく状態を共有したい場合、どうしますか？
 
-This is where context comes into play:
+そのような場合はContextの出番です。
 
 ```js
 function useCounter() {
@@ -233,11 +230,11 @@ function App() {
 }
 ```
 
-This is great, it's perfect, more people should write code like this.
+素晴らしい。完璧です。多くの人がこのようにコードを書くべきです。
 
-But sometimes we all need a little bit more structure and intentional API design in order to get it consistently right.
+しかし、私達はもう少し構造的で意図的なAPIを設計する必要があります。そうすれば一貫して正しいAPIを扱うことができます。
 
-By introducing the `createContainer()` function, you can think about your custom hooks as "containers" and have an API that's clear and prevents you from using it wrong.
+`createContainer()` 関数を紹介します。これを使えば「コンテナー(containers)」としてカスタムhooksを考慮でき、明確なAPIが使えて間違った使い方をすることを防ぐことができます。
 
 ```js
 import { createContainer } from "unstated-next"
@@ -272,7 +269,7 @@ function App() {
 }
 ```
 
-Here's the diff of that change:
+以下は変更の差分です。
 
 ```diff
 - import { createContext, useContext } from "react"
@@ -307,13 +304,13 @@ Here's the diff of that change:
   }
 ```
 
-If you're using TypeScript (which I encourage you to learn more about if you are not), this also has the benefit of making TypeScript's built-in inference work better. As long as your custom hook is typed, then everything else will just work.
+もしTypeScriptを使っている場合（もし使っていないなら使うことをおすすめします）、TypeScriptに組み込まれた型推論の恩恵を受けることができます。あなたのカスタムhookが型付けされていれば、その他の型はすべては正しく動作します。
 
 ## Tips
 
-### Tip #1: Composing Containers
+### Tip #1: コンテナを構成する
 
-Because we're just working with custom React hooks, we can compose containers inside of other hooks.
+カスタムReact hooksを使っているだけなので、他のhooksの内部にコンテナを構成することができます。
 
 ```js
 function useCounter() {
@@ -332,9 +329,10 @@ function useResettableCounter() {
 }
 ```
 
-### Tip #2: Keeping Containers Small
+### Tip #2: コンテナを小さく保つ
 
-This can be useful for keeping your containers small and focused. Which can be important if you want to code split the logic in your containers: Just move them to their own hooks and keep just the state in containers.
+このTipsはコンテナを小さく焦点を絞ることを保つために役立ちます。コンテナ内のロジックのコードを分割したい場合に重要になるかもしれません：
+個別のhooksに移動させコンテナ内で状態を保つだけです。
 
 ```js
 function useCount() {
@@ -352,11 +350,11 @@ function useCounter() {
 }
 ```
 
-### Tip #3: Optimizing components
+### Tip #3: コンポーネントの最適化
 
-There's no "optimizing" `unstated-next` to be done, all of the optimizations you might do would be standard React optimizations.
+"unstated-next"を実行するための「最適化」は行われていません。あなたが行ったかもしれないすべての最適化は標準のReactの最適化でした。
 
-#### 1) Optimizing expensive sub-trees by splitting the component apart
+#### 1) コンポーネントを部分ごとに分割することで高コストなサブツリーを最適化します
 
 **Before:**
 
@@ -408,7 +406,7 @@ function CounterDisplay() {
 }
 ```
 
-#### 2) Optimizing expensive operations with useMemo()
+#### 2) useMemo()を使って高コストなオペレーションを最適化します
 
 **Before:**
 
@@ -416,7 +414,7 @@ function CounterDisplay() {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // Recalculating this every time `counter` changes is expensive
+  // `counter`が変わるたびに再計算することは高コストです
   let expensiveValue = expensiveComputation(props.input)
 
   return (
@@ -450,7 +448,7 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 3) Reducing re-renders using React.memo() and useCallback()
+#### 3) React.memo()とuseCallback()を使って再レンダリングを減らします
 
 **Before:**
 
@@ -504,9 +502,9 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 4) Wrapping your elements with `useMemo()`
+#### 4) `useMemo()`を使って要素をラップします
 
-[via Dan Abramov](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
+[Dan Abramov氏より](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
 
 **Before:**
 
@@ -534,31 +532,31 @@ function CounterDisplay(props) {
 }
 ```
 
-## Relation to Unstated
+## Unstatedとの関連性
 
-I consider this library the spiritual successor to [Unstated](https://github.com/jamiebuilds/unstated). I created Unstated because I believed that React was really great at state management already and the only missing piece was sharing state and logic easily. So I created Unstated to be the "minimal" solution to sharing React state and logic.
+私はこのライブラリは[Unstated](https://github.com/jamiebuilds/unstated)の精神を受け継いでいると考えています。Reactは既に状態管理にとても優れており、唯一の欠点は状態とロジックの共有だとと信じていたためUnstatedを作りました。そのためReactの状態とロジックを共有するのに「最小限」の解決方法になるようにUnstatedを作りました。
 
-However, with Hooks, React has become much better at sharing state and logic. To the point that I think Unstated has become an unnecessary abstraction.
+しかし、Hooksを使えばReactは状態とロジックを共有するのにもっと良くなります。
 
-**HOWEVER**, I think many developers have struggled seeing how to share state and logic with React Hooks for "application state". That may just be an issue of documentation and community momentum, but I think that an API could help bridge that mental gap.
+**しかし**、多くの開発者は「アプリケーション内の状態」のためにReact Hooksを使って状態とロジックをどのように共有するか考えることに苦労していると私は考えました。
 
-That API is what Unstated Next is. Instead of being the "Minimal API for sharing state and logic in React", it is now the "Minimal API for understanding shared state and logic in React".
+Unstated NextこそがそのAPIです。「React内で状態とロジックの共有のための最小限のAPI」にするのではなく、「React内で共有されている状態ととロジックを理解するための最小限のAPI」としています。
 
-I've always been on the side of React. I want React to win. I would like to see the community abandon state management libraries like Redux, and find better ways of making use of React's built-in toolchain.
+私はいつもReactの味方でした。Reactに勝利してほしいです。コミュニティがReduxのような状態管理ライブラリを捨て、Reactに組み込まれているツールチェインを使うより良い方法を探したいと考えています。
 
-If instead of using Unstated, you just want to use React itself, I would highly encourage that. Write blog posts about it! Give talks about it! Spread your knowledge in the community.
+もしUnstatedを使わずにReact本体だけを使いたいのであれば、私はそれを強く推奨します。それについてブログを書いてください！　それについて話してください！　コミュニティにあなたの知識を広めてください。
 
-## Migration from `unstated`
+## `unstated`からの移行
 
-I've intentionally published this as a separate package name because it is a complete reset on the API. This way you can have both installed and migrate incrementally.
+これはAPIを完全にリセットしているため、意図的に別のパッケージ名として公開しました。これにより、双方をインストールして段階的に移行することができます。
 
-Please provide me with feedback on that migration process, because over the next few months I hope to take that feedback and do two things:
+移行プロセスについてフィードバックをください。今後数ヶ月の間にフィードバックを集めて下記の2つを行いたいと考えています。
 
-- Make sure `unstated-next` fulfills all the needs of `unstated` users.
-- Make sure `unstated` has a clean migration process towards `unstated-next`.
+- `unstated-next`が`unstated`のユーザーの要求を満たしているか確認
+- `unstated`の`unstated-next`への移行プロセスが整っているか確認
 
-I may choose to add APIs to either library to make life easier for developers. For `unstated-next` I promise that the added APIs will be as minimal as possible and I'll try to keep the library small.
+私は開発者の負担を軽減するためにどちらかのライブラリにAPIを追加することもできます。`unstated-next`については、追加されるAPIは可能な限り最小になるようにすることを約束します。そしてライブラリを小さく保つようにします。
 
-In the future, I will likely merge `unstated-next` back into `unstated` as a new major version. `unstated-next` will still exist so that you can have both `unstated@2` and `unstated-next` installed. Then when you are done with the migration, you can update to `unstated@3` and remove `unstated-next` (being sure to update all your imports as you do... should be just a find-and-replace).
+将来、`unstated-next`を`unstated`の新しいメジャーバージョンとしてマージするかもしれません。`unstated-next`は存在しつづけ、`unstated@2`もしくは`unstated-next`でインストールすることができるようにします。その後、移行が完了したら`unstated@3`にアップデートし`unstated-next`を削除することが可能になります。(ライブラリを読み込んでいる箇所をすべて修正していることを確認してください。行うことは検索と置換のみです）
 
-Even though this is a major new API change, I hope that I can make this migration as easy as possible on you. I'm optimizing for you to get to using the latest React Hooks APIs and not for preserving code written with `Unstated.Container`'s. Feel free to provide feedback on how that could be done better.
+これは主要な新しいAPIの変更ですが、可能な限り簡単に移行を行えることを願っています。最新のReact Hooks APIを使って`Unstated.Container`で書かれたコードを保守しなくてもいいように最適化しています。どうすればより良くなるか気軽にフィードバックしてください。
