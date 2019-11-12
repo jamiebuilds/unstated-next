@@ -8,7 +8,7 @@
     <a href="README-pt-br.md">Português</a>
   </strong>
   <br/>
-  <sup><em>(Por favor, contribua com traduções!)</em></sup>
+  <sup><em>(Please contribute translations!)</em></sup>
 </p>
 
 # Unstated Next
