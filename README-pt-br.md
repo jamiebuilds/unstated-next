@@ -26,14 +26,14 @@ Mas, a pergunta mais importante: É melhor que o Redux? Bem...
 - **É menor.** _É 40x menor._
 - **É mais rápido.** _Componentize o problema de desempenho._
 - **É mais fácil de aprender.** _Você já precisará conhecer React Hooks & Context, basta usá-los, eles são demais._
-- **É mais fácil de integrar.** _Integra um componente por vez, e integre-se facilmente a todas as bibliotecas React._
-- **É mais fácil de testar.** _Testar redutores é uma perda de tempo, facilite o teste dos componentes do React._
-- **É mais fácil digitar.** _Projetado para tornar inferível a maioria dos seus Dicaos._
+- **É mais fácil de integrar.** _Integre um componente por vez, e integre-se facilmente a todas as bibliotecas React._
+- **É mais fácil de testar.** _Testar redutores é uma perda de tempo, facilite os testes dos componentes React._
+- **É mais fácil digitar.** _Projetado para tornar inferível a maioria dos seus tipos._
 - **É mínimo.** _É apenas React._
 
 Você decide.
 
-### [Consulte a migração na documentação do Unstated &rarr;](#migration-from-unstated)
+### [Consulte a migração na documentação do Unstated &rarr;](#migra%C3%A7%C3%A3o-de-unstated)
 
 ## Instalar
 
@@ -166,7 +166,7 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={decrement}>-</button>
-      <p>Você clicou {count} vezes</p>
+      <p>You clicked {count} times</p>
       <button onClick={increment}>+</button>
     </div>
   )
@@ -188,7 +188,7 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
@@ -214,7 +214,7 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
@@ -254,7 +254,7 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
@@ -352,7 +352,7 @@ function useCounter() {
 
 ### Dica #3: Otimizando componentes
 
-Não há "otimização" no `unstated-next` a ser feita; todas as otimizações que você pode fazer seriam otimizações padrões do React.
+Não há "otimização" no `unstated-next` a ser feita, todas as otimizações que você pode fazer seriam otimizações padrões do React.
 
 #### 1) Otimizando subárvores caras dividindo o componente
 
@@ -364,12 +364,12 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
       <div>
         <div>
           <div>
-            <div>RENDERIZAÇÃO SUPER CARA DE ALGO</div>
+            <div>SUPER EXPENSIVE RENDERING STUFF</div>
           </div>
         </div>
       </div>
@@ -386,7 +386,7 @@ function ExpensiveComponent() {
     <div>
       <div>
         <div>
-          <div>RENDERIZAÇÃO SUPER CARA DE ALGO</div>
+          <div>SUPER EXPENSIVE RENDERING STUFF</div>
         </div>
       </div>
     </div>
@@ -398,7 +398,7 @@ function CounterDisplay() {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
       <ExpensiveComponent />
     </div>
@@ -420,7 +420,7 @@ function CounterDisplay(props) {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
@@ -441,14 +441,14 @@ function CounterDisplay(props) {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
 }
 ```
 
-#### 3) Reduzindo as renderizações novamente usando React.memo() e useCallback()
+#### 3) Reduzindo as re-renderizações usando React.memo() e useCallback()
 
 **Antes:**
 
@@ -467,7 +467,7 @@ function CounterDisplay(props) {
   return (
     <div>
       <button onClick={counter.decrement}>-</button>
-      <p>Você clicou {counter.count} vezes</p>
+      <p>You clicked {counter.count} times</p>
       <button onClick={counter.increment}>+</button>
     </div>
   )
@@ -490,7 +490,7 @@ let CounterDisplayInner = React.memo(props => {
   return (
     <div>
       <button onClick={props.decrement}>-</button>
-      <p>Você clicou {props.count} vezes</p>
+      <p>You clicked {props.count} times</p>
       <button onClick={props.increment}>+</button>
     </div>
   )
@@ -514,7 +514,7 @@ function CounterDisplay(props) {
   let count = counter.count
   
   return (
-    <p>Você clicou {count} vezes</p>
+    <p>You clicked {count} times</p>
   )
 }
 ```
@@ -527,7 +527,7 @@ function CounterDisplay(props) {
   let count = counter.count
   
   return useMemo(() => (
-    <p>Você clicou {count} vezes</p>
+    <p>You clicked {count} times</p>
   ), [count])
 }
 ```
@@ -538,25 +538,25 @@ Considero esta biblioteca o sucessor espiritual de [Unstated](https://github.com
 
 No entanto, com Hooks, o React se tornou muito melhor no compartilhamento de estado e lógica. A tal ponto que acho que Unstated se tornou uma abstração desnecessária.
 
-**NO ENTANTO**, acho que muitos desenvolvedores lutaram para ver como compartilhar estado e lógica com o React Hooks para o "estado do aplicativo". Isso pode ser apenas uma questão de documentação e momento da comunidade, mas acho que uma API pode ajudar a preencher essa lacuna mental.
+**NO ENTANTO**, acho que muitos desenvolvedores tiveram dificuldades em saber como compartilhar estado e lógica com o React Hooks para o "estado do aplicativo". Isso pode ser apenas uma questão de documentação e momento da comunidade, mas acho que uma API pode ajudar a preencher essa lacuna mental.
 
 Essa API é o que é o Unstated Next. Em vez de ser a "API mínima para compartilhar estado e lógica no React", agora é a "API mínima para entender o estado e a lógica compartilhada no React".
 
-Eu sempre estive do lado do React. Eu quero que o React ganhe. Gostaria de ver a comunidade abandonando as bibliotecas de gerenciamento de estado, como o Redux, e encontrar melhores maneiras de fazer uso da cadeia de ferramentas integrada do React.
+Eu sempre estive do lado do React. Eu quero que o React ganhe. Gostaria de ver a comunidade abandonando as bibliotecas de gerenciamento de estado, como o Redux, e encontrar melhores maneiras de user a cadeia de ferramentas integradas do React.
 
-Se, em vez de usar o Unstated, você quiser apenas usar o React, eu o encorajaria. Escreva postagens de blog sobre isso! Dê palestras sobre isso! Espalhe seu conhecimento na comunidade.
+Se, em vez de usar o Unstated, você quiser apenas usar o React, eu super encorajaria. Escreva postagens de blog sobre isso! Dê palestras sobre isso! Espalhe seu conhecimento na comunidade.
 
 ## Migração de `unstated`
 
-Publiquei intencionalmente isso como um nome de pacote separado, porque é uma redefinição completa na API. Dessa forma, você pode ter ambos instalados e migrar de forma incremental.
+Publiquei intencionalmente com um nome de pacote separado, porque é uma redefinição completa na API. Dessa forma, você pode ter ambos instalados e migrar de forma incremental.
 
 Envie-me um feedback sobre esse processo de migração, porque, nos próximos meses, espero receber esse feedback e fazer duas coisas:
 
-- Certifique-se de que `unstated-next` atenda a todas as necessidades dos usuários `unstated`.
-- Certifique-se de que `unstated` tenha um processo de migração limpo para `unstated-next`.
+- Me certificar de que `unstated-next` atenda a todas as necessidades dos usuários `unstated`.
+- Me certificar de que `unstated` tenha um processo de migração limpo para `unstated-next`.
 
 Posso optar por adicionar APIs a qualquer uma das bibliotecas para facilitar a vida dos desenvolvedores. Para `unstated-next`, prometo que as APIs adicionadas serão o mínimo possível e tentarei manter a biblioteca pequena.
 
-No futuro, provavelmente mesclarei `unstated-next` de volta em `unstated` como uma nova versão principal. O `unstated-next` ainda existirá para que você possa ter o `unstated@2` e o `unstated-next` instalados. Então, quando você terminar a migração, poderá atualizar para `unstated@3` e remover `unstated-next` (certifique-se de atualizar todas as suas importações como faz ... deve ser apenas uma busca e substituição).
+No futuro, provavelmente mesclarei `unstated-next` de volta em `unstated` como uma nova versão principal. O `unstated-next` ainda existirá para que você possa ter o `unstated@2` e o `unstated-next` instalados. Então, quando você terminar a migração, poderá atualizar para `unstated@3` e remover `unstated-next` (certifique-se de atualizar todas as suas importações como faz ... deve ser apenas um encontrar e substituir).
 
 Embora essa seja uma nova e importante mudança na API, espero poder facilitar essa migração o máximo possível. Estou otimizando para você usar as mais recentes APIs do React Hooks e não para preservar o código escrito com o `Unstated.Container`. Sinta-se à vontade para fornecer feedback sobre como isso pode ser melhor feito.
