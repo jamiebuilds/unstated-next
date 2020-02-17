@@ -13,35 +13,35 @@
 
 # Unstated Next
 
-> 永远不必再考虑 React 状态管理了，仅仅 200 字节的状态管理解决方案。
+> 200 bytes para no pensar nunca más en las bibliotecas de administración de estado React
 
-- **React Hooks** _React Hooks 用做你所有的状态管理。_
+- **React Hooks** _úsalos para toda la gestión de tu state._
 - **~200 bytes** _min+gz._
-- **熟悉的 API** _仅仅使用了 React，没有依赖第三方库。_
-- **最小 API** _只需 5 分钟学习。_
-- **TypeScript 编写** _推断代码更容易，易于编写 React 代码。_
+- **API familiar** _use React como se pretende._
+- **API minimalista** _te tardas 5 minutos en aprender._
+- **Escrito en TypeScript** _se te facilitará escribir tu código React._
 
-但是，最重要的问题是：这比 Redux 更好吗？ 答案可能是。
+Pero, la pregunta más importante: ¿Es esto mejor que Redux? Bueno...
 
-- **它更小。** _比 Redux 小 40 倍。_
-- **它更快。** _组件性能问题。_
-- **它更容易学习。** _你必须已经知道 React Hooks 和 Context 。只需使用它们，它们就会嗨起来。_
-- **更容易集成。** _一次集成一个组件，并且轻松与其他 React 库集成。_
-- **它更容易测试。** _测试 reducers 纯属浪费你的时间，这个库使你更容易测试 React 组件。_
-- **它更容易进行类型检查。** _旨在使你的大多数类型可推断。_
-- **它是最小的。** _仅仅使用了 React 。_
+- **Es pequeño.** _Es 40 veces más pequeña._
+- **Es rápida.** _Componentizar el problema del desempeño._
+- **Es fácil de aprender.** _Ya tendrás que conocer React Hooks & Context, solo úsalos, son geniales._
+- **Es fácil de integrar.** _Integre un componente a la vez e integre fácilmente con cada libería de React._
+- **Es fácil de testear.** _Probar los reducers es una pérdida de tiempo, hace que sea más fácil probar sus componentes React._
+- **Es más fácil de revisar tipos.** _Diseñado para hacer que la mayoría de sus tipos sean inferibles._
+- **Es minimalista.** _It's just React._
 
-你自己看着办吧！
+Así que tu decides.
 
-### [查看 Unstated 迁移手册 &rarr;](#%E4%BB%8E-unstated-%E8%BF%81%E7%A7%BB)
+### [Docs para migrarte desde Unstated &rarr;](#migrando-desde-unstated)
 
-## 安装
+## Instalación
 
 ```sh
 npm install --save unstated-next
 ```
 
-## Example
+## Ejemplo
 
 ```js
 import React, { useState } from "react"
@@ -94,7 +94,7 @@ render(<App />, document.getElementById("root"))
 import { createContainer } from "unstated-next"
 
 function useCustomHook() {
-  let [value, setInput] = useState()
+  let [value, setValue] = useState()
   let onChange = e => setValue(e.currentTarget.value)
   return { value, onChange }
 }
@@ -152,11 +152,12 @@ function ChildComponent() {
 }
 ```
 
-## 指南
+## Guía
 
-如果你以前从未使用过 React Hooks，我不建议你往下看，请先阅读 [React 官网的 React Hooks 文档](https://reactjs.org/docs/hooks-intro.html)。
+Si nunca antes has usado React Hooks, te recomiendo pausar e ir a leer
+[los excelentes documentos en el sitio React](https://reactjs.org/docs/hooks-intro.html).
 
-首先，使用 React Hooks，你可以创建这样一个组件：
+Entonces, con Hooks, puede crear un componente como este:
 
 ```js
 function CounterDisplay() {
@@ -173,7 +174,8 @@ function CounterDisplay() {
 }
 ```
 
-然后，如果你想共享组件的逻辑，你可以把它写在组件外面，自定义一个 hook:
+Luego, si desea compartir la lógica detrás del componente, puede extraerlo
+en un hook personalizado:
 
 ```js
 function useCounter() {
@@ -195,9 +197,9 @@ function CounterDisplay() {
 }
 ```
 
-但是，除了共享逻辑之外，你还想共享状态，你会怎么做呢？
+Pero, ¿Qué pasa si quieres compartir el estado además de la lógica, qué haces?
 
-这个时候，context 就发挥了作用：
+Aquí es donde entra en juego el context:
 
 ```js
 function useCounter() {
@@ -231,11 +233,11 @@ function App() {
 }
 ```
 
-这很棒，也很完美，更多人应该编写这样的代码。
+Esto es genial, es perfecto, más personas deberían escribir código como este.
 
-但有时我们需要更多的结构和特定的 API 设计才能使其始终保持正确。
+Pero a veces todos necesitamos un poco más de estructura y diseño de API intencional para hacerlo de manera consistente.
 
-通过引入 `createContainer()` 函数，你可以将自定义 hooks 作为 containers，并且定义明确的 API，防止错误使用。
+Al introducir la función `createContainer()`, puede pensar en sus hooks personalizados como "contenedores" y tener una API que es clara y evita que lo use incorrectamente.
 
 ```js
 import { createContainer } from "unstated-next"
@@ -270,7 +272,7 @@ function App() {
 }
 ```
 
-下面是前后的代码对比：
+Aquí está la diferencia de ese cambio:
 
 ```diff
 - import { createContext, useContext } from "react"
@@ -305,13 +307,13 @@ function App() {
   }
 ```
 
-如果你正在使用 TypeScript（我鼓励你了解更多关于它的信息），这也有助于 TypeScript 的内置推断做得更好。只要你的自定义 hook 类型是完善的，那么类型都会自动推断。
+Si está utilizando TypeScript (que te animo a que lo aprendas si no estás en eso), esto también tiene la ventaja de hacer que la inferencia incorporada de TypeScript funcione mejor. Mientras se escriba su hook personalizado, todo lo demás simplemente funcionará.
 
-## 提示
+## Tips
 
-### 提示 #1: 组合 Containers
+### Tip #1: Contenedores de composición
 
-因为我们只使用了自定义 React hooks，所以可以在其他 hooks 内部组合 containers。
+Debido a que solo estamos trabajando con React Hooks personalizados, podemos componer contenedores dentro de otros hooks.
 
 ```js
 function useCounter() {
@@ -330,9 +332,9 @@ function useResettableCounter() {
 }
 ```
 
-### 提示 #2: 保持 Containers 很小
+### Tip #2: Mantener contenedores pequeños
 
-这对于保持 containers 小而集中非常有用。 如果你想在 containers 中对代码进行逻辑拆分，那么这一点非常重要。只需将它们移动到自己的 hooks 中，仅保存 containers 的状态即可。
+Esto puede ser útil para mantener sus contenedores pequeños y enfocados. Lo que puede ser importante si desea codificar dividir la lógica en sus contenedores: simplemente muévalos a sus propios Hooks y mantenga solo el estado en los contenedores.
 
 ```js
 function useCount() {
@@ -350,13 +352,13 @@ function useCounter() {
 }
 ```
 
-### 提示 #3: 优化组件
+### Tip #3: Optimizando componentes
 
-`unstated-next` 无需优化。所有你要做的优化，都是标准的 React 优化。
+No hay que hacer "optimización" de `unstated-next`, todas las optimizaciones que podría hacer serían optimizaciones estándar de React.
 
-#### 1) 通过拆分组件来优化耗时的子树
+#### 1) Optimización de sub-árboles caros al dividir el componente
 
-**优化前:**
+**Before:**
 
 ```js
 function CounterDisplay() {
@@ -378,7 +380,7 @@ function CounterDisplay() {
 }
 ```
 
-**优化后:**
+**Después:**
 
 ```js
 function ExpensiveComponent() {
@@ -406,15 +408,15 @@ function CounterDisplay() {
 }
 ```
 
-#### 2) 使用 useMemo() 优化耗时的操作
+#### 2) Optimizando operaciones costosas con useMemo()
 
-**优化前:**
+**Antes:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // 每次 `counter` 改变都要重新计算这个值，非常耗时
+  // Recalculating this every time `counter` changes is expensive
   let expensiveValue = expensiveComputation(props.input)
 
   return (
@@ -427,13 +429,13 @@ function CounterDisplay(props) {
 }
 ```
 
-**优化后:**
+**Despúes:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // 仅在输入更改时重新计算这个值
+  // Only recalculate this value when its inputs have changed
   let expensiveValue = useMemo(() => {
     return expensiveComputation(props.input)
   }, [props.input])
@@ -448,9 +450,9 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 3) 使用 React.memo()、useCallback() 减少重新渲染次数
+#### 3) Reducción de renders usando React.memo() y useCallback()
 
-**优化前:**
+**Antes:**
 
 ```js
 function useCounter() {
@@ -474,7 +476,7 @@ function CounterDisplay(props) {
 }
 ```
 
-**优化后:**
+**Después:**
 
 ```js
 function useCounter() {
@@ -502,31 +504,57 @@ function CounterDisplay(props) {
 }
 ```
 
-## 与 Unstated 的关系
+#### 4) Envolviendo tus elementos con `useMemo()`
 
-我认为这个库是 [Unstated](https://github.com/jamiebuilds/unstated) 精神的继承者。因为我相信 React 在状态管理方面已经非常出色，唯一缺少的就是轻松共享状态和逻辑，所以我创建了 Unstated 。我创建的 Unstated 是 React 共享状态和逻辑的 **最小** 解决方案。
+[vía Dan Abramov](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
 
-然而，使用 Hooks，React 在共享状态和逻辑方面可以做得更好。我甚至认为 Unstated 成为了不必要的抽象。
+**Antes:**
 
-**但是**，我认为很多开发人员都在努力了解如何使用 React Hooks 共享状态和逻辑，从而实现应用程序共享状态。这可能只是文档和社区动力的问题，但我认为一个新的 API 可以弥补这种心理差距。
+```js
+function CounterDisplay(props) {
+  let counter = Counter.useContainer()
+  let count = counter.count
 
-这个 API 就是 Unstated Next。 它不是 **React 中共享状态和逻辑的最小 API**，而是**用于理解如何在 React 中共享状态和逻辑的最小 API**。
+  return <p>You clicked {count} times</p>
+}
+```
 
-我一直给 React 站队。我希望 React 可以赢。 我希望社区放弃像 Redux 这样的状态管理库，并找到使用 React 内置工具链的更好方法。
+**Después:**
 
-如果你不想使用 Unstated，你只想使用 React 本身，我非常鼓励你这么做。 写关于它的博客文章！ 讨论它！ 在社区中传播你的知识。
+```js
+function CounterDisplay(props) {
+  let counter = Counter.useContainer()
+  let count = counter.count
 
-## 从 `unstated` 迁移
+  return useMemo(() => <p>You clicked {count} times</p>, [count])
+}
+```
 
-我故意将其发布为单独的包，因为它是对原有 API 的完全重写。 这样，你可以逐步安装和迁移。
+## Relación con Unstated
 
-请向我提供有关该迁移过程的反馈，因为在接下来的几个月里，我希望得到这些反馈并做以下两件事：
+Considero que esta biblioteca es el sucesor espiritual de [Unstated](https://github.com/jamiebuilds/unstated). Creé Unstated porque creía que React ya era realmente bueno en la gestión del estado y que la única pieza que faltaba era compartir el estado y la lógica fácilmente. Así que creé Unstated para ser la solución "mínima" para compartir el estado y la lógica de React.
 
-- 确保 `unstated-next` 满足 `unstated` 使用者的所有需求。
-- 确保 `unstated` 使用者的代码可以完整地迁移到 `unstated-next`。
+Sin embargo, con Hooks, React se ha vuelto mucho mejor para compartir estado y lógica. Hasta el punto de que creo que Unstated se ha convertido en una abstracción innecesaria.
 
-我可以将 API 新增到两者的任意一个仓库中，从而使开发人员工作得更轻松。 对于 `unstated-next`，我将保证新增的 API 尽可能小，同时，我也会尽量保持库很小。
+**SIN EMBARGO**, Creo que muchos desarrolladores han tenido dificultades para ver cómo compartir el estado y la lógica con React Hooks para el "estado de la aplicación". Eso puede ser solo un problema de documentación e impulso de la comunidad, pero creo que una API podría ayudar a cerrar esa brecha mental.
 
-未来，我可能会将 `unstated-next` 合并为 `unstated` 的主要版本。 `unstated-next` 仍然存在，这样你就可以安装 `unstated@2` 和 `unstated-next`。 当你完成迁移后，你可以更新到 `unstated@3` ，同时删除 `unstated-next`（确保更新你所有的引入，这应该只是一个查找和替换的过程）。
+Esa API es lo que es Unstated Next. En lugar de ser la "API mínima para compartir el estado y la lógica en React", ahora es la "API mínima para comprender el estado y la lógica compartidos en React".
 
-尽管这是一个重大的 API 更改，我希望你尽可能轻松地完成此迁移。我正在使用最新的 React Hooks API ，为你进行优化，而不是使用原有的 `Unstated.Container` 代码。请随意提供有关如何做得更好的反馈。
+Siempre he estado del lado de React. Quiero que React gane. Me gustaría ver a la comunidad abandonar las bibliotecas de administración estatal como Redux, y encontrar mejores formas de hacer uso de la cadena de herramientas incorporada de React.
+
+Si en lugar de usar Unstated, solo quieres usar React en sí, lo recomendaría encarecidamente. ¡Escribe publicaciones de blog al respecto! ¡Da charlas al respecto! Difundir su conocimiento en la comunidad.
+
+## Migrando desde `unstated`
+
+He publicado esto intencionalmente como un nombre de paquete separado porque es un restablecimiento completo en la API. De esta manera, puede instalar y migrar de forma incremental.
+
+Envíenme sus comentarios sobre ese proceso de migración, porque en los próximos meses espero recibir esos comentarios y hacer dos cosas:
+
+- Asegurarse que `unstated-next`cumple todas las necesidades de los usuarios de `unstated`.
+- Asegurarse que `unstated` tiene un proceso de migración limpio hacia `unstated-next`.
+
+Puedo elegir agregar API a cualquiera de las bibliotecas para facilitar la vida de los desarrolladores. Para `unstated-next` Prometo que las API agregadas serán lo más mínimas posible e intentaré mantener la biblioteca pequeña.
+
+En el futuro, probablemente me fusionaré `unstated-next` dentro de `unstated` como una actualización mayor de versión. `unstated-next` seguirá existiendo para que pueda tener ambos `unstated@2` y `unstated-next` instalados. Luego, cuando haya terminado con la migración, puede actualizar a `unstated@3` y remover `unstated-next`(asegúrese de actualizar todas sus importaciones como lo hace ... debería ser solo una búsqueda y reemplazo).
+
+A pesar de que este es un nuevo cambio importante de API, espero poder hacer esta migración lo más fácil posible para usted. Estoy optimizando para que puedas usar las últimas API de React Hooks y no para preservar el código escrito con `Unstated.Container`'s. Siéntase libre de proporcionar comentarios sobre cómo podría hacerse mejor.

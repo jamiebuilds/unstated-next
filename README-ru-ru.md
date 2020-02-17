@@ -4,7 +4,8 @@
     <a href="README-zh-cn.md">中文</a> |
     <a href="README-ru-ru.md">Русский</a> |
     <a href="README-th-th.md">ภาษาไทย</a> |
-    <a href="README-vi-vn.md">Tiếng Việt</a>
+    <a href="README-vi-vn.md">Tiếng Việt</a> |
+    <a href="README-es-spa.md">Español</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>

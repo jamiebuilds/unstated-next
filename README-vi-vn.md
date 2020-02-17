@@ -4,7 +4,8 @@
     <a href="README-zh-cn.md">中文</a> |
     <a href="README-ru-ru.md">Русский</a> |
     <a href="README-th-th.md">ภาษาไทย</a> |
-    <a href="README-vi-vn.md">Tiếng Việt</a>
+    <a href="README-vi-vn.md">Tiếng Việt</a> |
+    <a href="README-es-spa.md">Español</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -511,10 +512,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return (
-    <p>You clicked {count} times</p>
-  )
+
+  return <p>You clicked {count} times</p>
 }
 ```
 
@@ -524,10 +523,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return useMemo(() => (
-    <p>You clicked {count} times</p>
-  ), [count])
+
+  return useMemo(() => <p>You clicked {count} times</p>, [count])
 }
 ```
 
@@ -551,8 +548,8 @@ Tôi đã cố tình xuất bản thư viện này dưới dạng tên gói riê
 
 Vui lòng cung cấp cho tôi thông tin phản hồi về quá trình migrate đó, vì trong vài tháng tới tôi hy vọng sẽ nhận được nhiều thông tin và thực hiện hai điều:
 
-- Đảm bảo rằng `unstated-next` đáp ứng tất cả các nhu cầu của người dùng` unstated`.
-- Đảm bảo rằng `unstated` có một quy trình migrate sạch sẽ đối với` unstated-next`.
+- Đảm bảo rằng `unstated-next` đáp ứng tất cả các nhu cầu của người dùng`unstated`.
+- Đảm bảo rằng `unstated` có một quy trình migrate sạch sẽ đối với`unstated-next`.
 
 Tôi có thể chọn thêm API vào một trong hai thư viện để giúp các nhà phát triển dễ dàng hơn. Đối với `unstated-next` Tôi hứa rằng các API được thêm vào sẽ tối thiểu nhất có thể và tôi sẽ cố gắng giữ thư viện thật nhỏ.
 
