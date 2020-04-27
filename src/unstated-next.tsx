@@ -8,6 +8,7 @@ export interface ContainerProviderProps<State = void> {
 export interface Container<Value, State = void> {
 	Provider: React.ComponentType<ContainerProviderProps<State>>
 	useContainer: () => Value
+	Context: React.Context<Value | null>
 }
 
 export function createContainer<Value, State = void>(
@@ -28,7 +29,7 @@ export function createContainer<Value, State = void>(
 		return value
 	}
 
-	return { Provider, useContainer }
+	return { Provider, useContainer, Context }
 }
 
 export function useContainer<Value, State = void>(
