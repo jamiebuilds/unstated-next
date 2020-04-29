@@ -13,7 +13,7 @@ export interface Container<Value, State = void> {
 export function createContainer<Value, State = void>(
 	useHook: (initialState?: State) => Value,
 ): Container<Value, State> {
-	let Context = React.createContext<Value | null>(null)
+	let Context = React.createContext<Value | undefined>(undefined)
 
 	function Provider(props: ContainerProviderProps<State>) {
 		let value = useHook(props.initialState)
@@ -22,7 +22,7 @@ export function createContainer<Value, State = void>(
 
 	function useContainer(): Value {
 		let value = React.useContext(Context)
-		if (value === null) {
+		if (value === undefined) {
 			throw new Error("Component must be wrapped with <Container.Provider>")
 		}
 		return value
