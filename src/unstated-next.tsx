@@ -13,7 +13,7 @@ export interface Container<Value, State = void> {
 export function createContainer<Value, State = void>(
 	useHook: (initialState?: State) => Value,
 ): Container<Value, State> {
-	let EMPTY = {}
+	const EMPTY: unique symbol = Symbol()
 	let Context = React.createContext<Value | typeof EMPTY>(EMPTY)
 
 	function Provider(props: ContainerProviderProps<State>) {
