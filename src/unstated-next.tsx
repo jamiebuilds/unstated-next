@@ -1,5 +1,7 @@
 import React from "react"
 
+const EMPTY: unique symbol = Symbol()
+
 export interface ContainerProviderProps<State = void> {
 	initialState?: State
 	children: React.ReactNode
@@ -13,7 +15,6 @@ export interface Container<Value, State = void> {
 export function createContainer<Value, State = void>(
 	useHook: (initialState?: State) => Value,
 ): Container<Value, State> {
-	const EMPTY: unique symbol = Symbol()
 	let Context = React.createContext<Value | typeof EMPTY>(EMPTY)
 
 	function Provider(props: ContainerProviderProps<State>) {
