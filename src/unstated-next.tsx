@@ -27,7 +27,6 @@ export function createContainer<Value, State = void>(
 		if (value === EMPTY) {
 			throw new Error("Component must be wrapped with <Container.Provider>")
 		}
-		// @ts-ignore
 		return value
 	}
 
