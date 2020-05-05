@@ -4,7 +4,7 @@ const EMPTY: unique symbol = Symbol()
 
 export interface ContainerProviderProps<State = void> {
 	initialState?: State
-	children: React.ReactNode
+	children?: React.ReactNode
 }
 
 export interface Container<Value, State = void> {
