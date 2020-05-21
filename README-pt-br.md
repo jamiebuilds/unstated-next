@@ -13,35 +13,35 @@
 
 # Unstated Next
 
-> Chỉ với 200 bytes, không cần lo nghĩ về quản lý React state
+> 200 bytes para nunca mais pensar em bibliotecas de gerenciamento de estado em React
 
-- **React Hooks** _dùng React Hooks để quản lý tất cả các state._
+- **React Hooks** _use-os para toda a sua gestão de estado._
 - **~200 bytes** _min+gz._
-- **API quen thuộc** _viết code như React thuần._
-- **API đơn giản** _chỉ tốn 5 phút để học._
-- **Written in TypeScript** _việc đặt kiểu cho React code sẽ rất dễ dàng._
+- **API Familiar** _basta usar o React como pretendido._
+- **API Mínima** _leva 5 minutos para aprender._
+- **Escrito em TypeScript** _e facilitará a digitação do seu código em React._
 
-Tuy nhiên, câu hỏi quan trọng là: Nó có tốt hơn Redux? Để xem nào...
+Mas, a pergunta mais importante: É melhor que o Redux? Bem...
 
-- **It's smaller.** _Unstated-next nhỏ gọn hơn đến 40 lần._
-- **It's faster.** _Component hóa vấn đề về tốc độ._
-- **It's easier to learn.** _Nếu bạn đã biết về React Hooks & Context, chỉ cần sử dụng thôi, nó rất tuyệt._
-- **It's easier to integrate.** _Tương thích với từng Component một, và có thể kết hợp dễ dàng với mọi thư viện React khác._
-- **It's easier to test.** _Kiểm thử reducers rất phí thời gian, nó sẽ đơn giản hơn khi bạn chỉ cần test React components._
-- **It's easier to typecheck.** _Thiết kế ra để bạn định nghĩa được hầu hết các types._
-- **It's minimal.** _Nó chỉ là React._
+- **É menor.** _É 40x menor._
+- **É mais rápido.** _Componentize o problema de desempenho._
+- **É mais fácil de aprender.** _Você já precisará conhecer React Hooks & Context, basta usá-los, eles são demais._
+- **É mais fácil de integrar.** _Integre um componente por vez, e integre-se facilmente a todas as bibliotecas React._
+- **É mais fácil de testar.** _Testar redutores é uma perda de tempo, facilite os testes dos componentes React._
+- **É mais fácil digitar.** _Projetado para tornar inferível a maioria dos seus tipos._
+- **É mínimo.** _É apenas React._
 
-Vậy quyết định là ở bạn.
+Você decide.
 
-### [Xem các nâng cấp từ Unstated &rarr;](#migration-from-unstated)
+### [Consulte a migração na documentação do Unstated &rarr;](#migra%C3%A7%C3%A3o-de-unstated)
 
-## Cài đặt
+## Instalar
 
 ```sh
 npm install --save unstated-next
 ```
 
-## Ví dụ
+## Exemplo
 
 ```js
 import React, { useState } from "react"
@@ -152,11 +152,11 @@ function ChildComponent() {
 }
 ```
 
-## Hướng dẫn
+## Guide
 
-Nếu bạn chưa bao giờ sử dụng React Hooks trước đây, Tôi khuyên bạn nên dừng lại và đọc qua [tài liệu tuyệt vời trên trang React](https://reactjs.org/docs/hooks-intro.html).
+Se você nunca usou o React Hooks antes, recomendo pausar e ler a [excelenete documentação no site do React](https://reactjs.org/docs/hooks-intro.html).
 
-Vậy với hooks bạn có thể tạo một component như thế này:
+Portanto, com os hooks você pode criar um componente como este:
 
 ```js
 function CounterDisplay() {
@@ -173,7 +173,7 @@ function CounterDisplay() {
 }
 ```
 
-Sau đó nếu bạn muốn chia sẻ phần logic đằng sau component, bạn có thể tách nó ra thành một custom hook:
+Então, se você quiser compartilhar a lógica por trás do componente, poderá extrai-lo em um hook customizado:
 
 ```js
 function useCounter() {
@@ -195,9 +195,9 @@ function CounterDisplay() {
 }
 ```
 
-Nhưng trong trường hợp bạn muốn chia sẻ cả trạng thái lẫn logic, bạn sẽ làm gì?
+Mas e se você quiser compartilhar o estado além da lógica, o que você faz?
 
-Đây sẽ là lúc context giúp được bạn:
+É aqui que o contexto entra em jogo:
 
 ```js
 function useCounter() {
@@ -231,11 +231,11 @@ function App() {
 }
 ```
 
-Điều này thật tuyệt, thật hoàn hảo, và mọi người nên viết code theo cách này.
+Isso é ótimo, é perfeito, mais pessoas devem escrever um código como este.
 
-Nhưng đôi khi chúng ta đều cần một cấu trúc rõ ràng và được thiết kế bài bản để mang lại một sự nhất quán.
+Às vezes, porém, todos precisamos de um pouco mais de estrutura e design intencional de API para obter a consistência correta.
 
-Xin giới thiệu hàm `createContainer()`, bạn có thể coi như custom hooks của bạn là một "containers" và có một API rõ ràng, có thể ngăn chặn bạn khỏi việc sử dụng nó sai mục đích.
+Introduzindo a função `createContainer()`, você pode pensar nos seus hooks customizados como "contêineres" e ter uma API clara, impedindo que você a use incorretamente.
 
 ```js
 import { createContainer } from "unstated-next"
@@ -270,7 +270,7 @@ function App() {
 }
 ```
 
-Đây là khác biệt của sự thay đổi:
+Aqui está o diff dessa mudança:
 
 ```diff
 - import { createContext, useContext } from "react"
@@ -305,13 +305,13 @@ function App() {
   }
 ```
 
-Nếu bạn đang sử dụng TypeScript (cái mà tôi khuyến khích bạn học thêm về nó nếu bạn chưa dùng), nó còn có lợi ích trong việc làm các gợi ý có sẵn của TypeScript's hoạt đông tốt hơn. Miễn là custom hook của bạn đã được đặt kiểu, thì mọi thứ sẽ hoạt động.
+Se você estiver usando o TypeScript (sobre o qual encorajo você a aprender mais, se não estiver), isso também terá o benefício de tornar a inferência incorporada do TypeScript funcionar melhor. Desde que seu hook customizado seja digitado, todo o resto funcionará.
 
-## Lời khuyên
+## Dicas
 
-### Tip #1: Tạo các Containers
+### Dica #1: Compondo containers
 
-Vì chúng ta chỉ đang làm việc với custom React hooks, chúng ta có thể tạo các containers bên trong những hooks khác.
+Como estamos trabalhando apenas com React Hooks customizados, podemos compor contêineres dentro de outros hooks:
 
 ```js
 function useCounter() {
@@ -330,9 +330,9 @@ function useResettableCounter() {
 }
 ```
 
-### Tip #2: Giữ cho những Containers thật nhỏ
+### Dica #2: Mantendo os contêineres pequenos
 
-Nó sẽ hữu ích nếu như bạn giữ được các containers của bạn thật nhỏ và tập trung vào một mục đích nhất định. Điều này có thể sẽ quan trọng nếu bạn muốn tách phần logic khỏi containers: Chỉ cần chuyển logic sang phần hooks của nó và giữ state lại ở containers.
+Isso pode ser útil para manter seus contêineres pequenos e focados. O que pode ser importante se você quiser codificar a lógica em seus contêineres: basta movê-los para seus próprios hooks e manter apenas o estado nos contêineres.
 
 ```js
 function useCount() {
@@ -350,13 +350,13 @@ function useCounter() {
 }
 ```
 
-### Tip #3: Tối ưu hóa components
+### Dica #3: Otimizando componentes
 
-Không có "tối ưu" `unstated-next` cần làm ở đây, tất cả việc tối ưu bạn có thể phải làm đó là tối ưu React code của bạn.
+Não há "otimização" no `unstated-next` a ser feita, todas as otimizações que você pode fazer seriam otimizações padrões do React.
 
-#### 1) Tối ưu các nhánh component nặng bằng việc chia ra thành một component riêng
+#### 1) Otimizando subárvores caras dividindo o componente
 
-**Trước:**
+**Antes:**
 
 ```js
 function CounterDisplay() {
@@ -378,7 +378,7 @@ function CounterDisplay() {
 }
 ```
 
-**Sau:**
+**Depois:**
 
 ```js
 function ExpensiveComponent() {
@@ -406,15 +406,15 @@ function CounterDisplay() {
 }
 ```
 
-#### 2) Tối ưu những phép tính toán nặng bằng useMemo()
+#### 2) Otimizando operações caras com useMemo()
 
-**Trước:**
+**Antes:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // Recalculating this every time `counter` changes is expensive
+  // Recalcular isso sempre que o `counter` mudar é caro
   let expensiveValue = expensiveComputation(props.input)
 
   return (
@@ -427,13 +427,13 @@ function CounterDisplay(props) {
 }
 ```
 
-**Sau:**
+**Depois:**
 
 ```js
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
 
-  // Only recalculate this value when its inputs have changed
+  // Recalcule esse valor apenas quando suas entradas forem alteradas
   let expensiveValue = useMemo(() => {
     return expensiveComputation(props.input)
   }, [props.input])
@@ -448,9 +448,9 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 3) Giảm thiểu việc render lại bằng React.memo() và useCallback()
+#### 3) Reduzindo as re-renderizações usando React.memo() e useCallback()
 
-**Trước:**
+**Antes:**
 
 ```js
 function useCounter() {
@@ -474,7 +474,7 @@ function CounterDisplay(props) {
 }
 ```
 
-**Sau:**
+**Depois:**
 
 ```js
 function useCounter() {
@@ -502,11 +502,11 @@ function CounterDisplay(props) {
 }
 ```
 
-#### 4) Gói các elements của bạn với `useMemo()`
+#### 4) Envolvendo seus elementos com `useMemo()`
 
-[theo Dan Abramov](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
+[via Dan Abramov](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
 
-**Trước:**
+**Antes:**
 
 ```js
 function CounterDisplay(props) {
@@ -519,7 +519,7 @@ function CounterDisplay(props) {
 }
 ```
 
-**Sau:**
+**Depois:**
 
 ```js
 function CounterDisplay(props) {
@@ -532,31 +532,31 @@ function CounterDisplay(props) {
 }
 ```
 
-## Sự tương quan với Unstated
+## Relação com Unstated
 
-Tôi coi thư viện này là sự kế thừa tinh thần cho [Unstated](https://github.com/jamiebuilds/unstated). Tôi đã tạo ra Unstated vì tôi tin rằng React đã thực sự tuyệt vời trong việc quản state và điều duy nhất còn thiếu là chia sẻ state, logic một cách dễ dàng. Vì vậy, tôi đã tạo ra Unstated, một giải pháp "tối giản" để chia sẻ React state và logic.
+Considero esta biblioteca o sucessor espiritual de [Unstated](https://github.com/jamiebuilds/unstated). Criei o Unstated porque acreditava que o React já era realmente bom em gerenciamento de estado e a única peça que faltava era compartilhar estado e lógica facilmente. Então, criei Unstated para ser a solução "mínima" para compartilhar o estado e a lógica do React.
 
-Tuy nhiên, với Hook, React đã trở nên tốt hơn nhiều trong việc chia sẻ state và logic. Đến mức tôi nghĩ Unstated đã trở thành một abstraction không cần thiết.
+No entanto, com Hooks, o React se tornou muito melhor no compartilhamento de estado e lógica. A tal ponto que acho que Unstated se tornou uma abstração desnecessária.
 
-**Tuy nhiên**, Tôi nghĩ rằng nhiều nhà phát triển đã vật lộn để xem cách chia sẻ state và logic với React Hook trong một "trạng thái của ứng dụng". Đó có thể chỉ là vấn đề về tài liệu và động lực từ cộng đồng, nhưng tôi nghĩ rằng sẽ có một API có thể giúp thu hẹp khoảng cách về tinh thần đó.
+**NO ENTANTO**, acho que muitos desenvolvedores tiveram dificuldades em saber como compartilhar estado e lógica com o React Hooks para o "estado do aplicativo". Isso pode ser apenas uma questão de documentação e momento da comunidade, mas acho que uma API pode ajudar a preencher essa lacuna mental.
 
-API đó chính là Unstated Next. Thay vì là "API tối thiểu để chia sẻ state và logic trong React", giờ đây nó là "API tối thiểu để hiểu state và logic được chia sẻ trong React".
+Essa API é o que é o Unstated Next. Em vez de ser a "API mínima para compartilhar estado e lógica no React", agora é a "API mínima para entender o estado e a lógica compartilhada no React".
 
-Tôi đã luôn đứng về phía React. Tôi muốn React giành chiến thắng. Tôi muốn thấy cộng đồng từ bỏ các thư viện quản lý state như Redux và tìm ra những cách tốt hơn để sử dụng chuỗi công cụ tích hợp có sẵn của React.
+Eu sempre estive do lado do React. Eu quero que o React ganhe. Gostaria de ver a comunidade abandonando as bibliotecas de gerenciamento de estado, como o Redux, e encontrar melhores maneiras de user a cadeia de ferramentas integradas do React.
 
-Nếu thay vì sử dụng Unstated, bạn chỉ muốn sử dụng React, tôi rất khuyến khích điều đó. Viết bài đăng trên blog về nó! Hãy kể về nó! Truyền bá kiến thức của bạn trong cộng đồng.
+Se, em vez de usar o Unstated, você quiser apenas usar o React, eu super encorajaria. Escreva postagens de blog sobre isso! Dê palestras sobre isso! Espalhe seu conhecimento na comunidade.
 
-## Cách cập nhật từ `unstated`
+## Migração de `unstated`
 
-Tôi đã cố tình xuất bản thư viện này dưới dạng tên gói riêng vì API đã được viết lại hoàn toàn. Bằng cách này, bạn có thể cài cả hai và migrate dần dần.
+Publiquei intencionalmente com um nome de pacote separado, porque é uma redefinição completa na API. Dessa forma, você pode ter ambos instalados e migrar de forma incremental.
 
-Vui lòng cung cấp cho tôi thông tin phản hồi về quá trình migrate đó, vì trong vài tháng tới tôi hy vọng sẽ nhận được nhiều thông tin và thực hiện hai điều:
+Envie-me um feedback sobre esse processo de migração, porque, nos próximos meses, espero receber esse feedback e fazer duas coisas:
 
-- Đảm bảo rằng `unstated-next` đáp ứng tất cả các nhu cầu của người dùng` unstated`.
-- Đảm bảo rằng `unstated` có một quy trình migrate sạch sẽ đối với` unstated-next`.
+- Me certificar de que `unstated-next` atenda a todas as necessidades dos usuários `unstated`.
+- Me certificar de que `unstated` tenha um processo de migração limpo para `unstated-next`.
 
-Tôi có thể chọn thêm API vào một trong hai thư viện để giúp các nhà phát triển dễ dàng hơn. Đối với `unstated-next` Tôi hứa rằng các API được thêm vào sẽ tối thiểu nhất có thể và tôi sẽ cố gắng giữ thư viện thật nhỏ.
+Posso optar por adicionar APIs a qualquer uma das bibliotecas para facilitar a vida dos desenvolvedores. Para `unstated-next`, prometo que as APIs adicionadas serão o mínimo possível e tentarei manter a biblioteca pequena.
 
-Trong tương lai, tôi có thể sẽ hợp nhất `unstated-next` trở lại thành `unstated` như một phiên bản chính mới. `unstated-next` vẫn sẽ tồn tại để bạn có thể cài đặt cả `unstated@2` và `unstated-next`. Sau đó, khi bạn hoàn thành việc migrate, bạn có thể cập nhật thành `unstated@3` và xóa `unstated-next` (chắc chắn bạn đã cập nhật tất cả các imports... bằng cách tìm kiếm và thay thế).
+No futuro, provavelmente mesclarei `unstated-next` de volta em `unstated` como uma nova versão principal. O `unstated-next` ainda existirá para que você possa ter o `unstated@2` e o `unstated-next` instalados. Então, quando você terminar a migração, poderá atualizar para `unstated@3` e remover `unstated-next` (certifique-se de atualizar todas as suas importações como faz ... deve ser apenas um encontrar e substituir).
 
-Mặc dù đây là một thay đổi API mới, tôi hy vọng rằng tôi có thể thực hiện việc migrate này dễ dàng nhất có thể đối với bạn. Tôi đang tối ưu hóa cho bạn để sử dụng API React Hook mới nhất chứ không phải để giữ code được viết bằng `Unstated.Container`. Hãy cho ý kiến của bạn về cách nó có thể được làm tốt hơn.
+Embora essa seja uma nova e importante mudança na API, espero poder facilitar essa migração o máximo possível. Estou otimizando para você usar as mais recentes APIs do React Hooks e não para preservar o código escrito com o `Unstated.Container`. Sinta-se à vontade para fornecer feedback sobre como isso pode ser melhor feito.
