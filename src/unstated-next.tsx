@@ -7,9 +7,14 @@ export interface ContainerProviderProps<State = void> {
 	children: React.ReactNode
 }
 
+export interface ContainerConsumerProps<Value> {
+	children: (value: Value) => React.ReactNode
+}
+
 export interface Container<Value, State = void> {
 	Provider: React.ComponentType<ContainerProviderProps<State>>
 	useContainer: () => Value
+	Consumer: React.ComponentType<ContainerConsumerProps<Value>>
 }
 
 export function createContainer<Value, State = void>(
@@ -30,7 +35,22 @@ export function createContainer<Value, State = void>(
 		return value
 	}
 
-	return { Provider, useContainer }
+	function Consumer(props: ContainerConsumerProps<Value>) {
+		return (
+			<Context.Consumer>
+				{value => {
+					if (value === EMPTY) {
+						throw new Error(
+							"Component must be wrapped with <Container.Provider>",
+						)
+					}
+					return props.children(value)
+				}}
+			</Context.Consumer>
+		)
+	}
+
+	return { Provider, useContainer, Consumer }
 }
 
 export function useContainer<Value, State = void>(
