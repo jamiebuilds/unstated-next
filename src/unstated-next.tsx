@@ -14,8 +14,12 @@ export interface Container<Value, State = void> {
 
 export function createContainer<Value, State = void>(
 	useHook: (initialState?: State) => Value,
+	displayName?: string,
 ): Container<Value, State> {
 	let Context = React.createContext<Value | typeof EMPTY>(EMPTY)
+	if (displayName) {
+		Context.displayName = displayName
+	}
 
 	function Provider(props: ContainerProviderProps<State>) {
 		let value = useHook(props.initialState)
