@@ -10,6 +10,9 @@ export interface ContainerProviderProps<State = void> {
 export interface Container<Value, State = void> {
 	Provider: React.ComponentType<ContainerProviderProps<State>>
 	useContainer: () => Value
+	withContainer: <P extends object>(
+		Component: React.ComponentType<P>,
+	) => (props: P) => React.ReactNode
 }
 
 export function createContainer<Value, State = void>(
@@ -30,7 +33,17 @@ export function createContainer<Value, State = void>(
 		return value
 	}
 
-	return { Provider, useContainer }
+	function withContainer<P extends object>(Component: React.ComponentType<P>) {
+		return (props: P) => {
+			return (
+				<Provider>
+					<Component {...props} />
+				</Provider>
+			)
+		}
+	}
+
+	return { Provider, useContainer, withContainer }
 }
 
 export function useContainer<Value, State = void>(
