@@ -8,7 +8,7 @@
     <a href="README-es-spa.md">Español</a>
   </strong>
   <br/>
-  <sup><em>(Please contribute translations!)</em></sup>
+  <sup><em>(¡Ayúdanos a traducir!)</em></sup>
 </p>
 
 # Unstated Next
@@ -17,23 +17,23 @@
 
 - **React Hooks** _úsalos para toda la gestión de tu state._
 - **~200 bytes** _min+gz._
-- **API familiar** _use React como se pretende._
+- **API familiar** _usa React como se pretende._
 - **API minimalista** _te tardas 5 minutos en aprender._
 - **Escrito en TypeScript** _se te facilitará escribir tu código React._
 
 Pero, la pregunta más importante: ¿Es esto mejor que Redux? Bueno...
 
-- **Es pequeño.** _Es 40 veces más pequeña._
-- **Es rápida.** _Componentizar el problema del desempeño._
-- **Es fácil de aprender.** _Ya tendrás que conocer React Hooks & Context, solo úsalos, son geniales._
-- **Es fácil de integrar.** _Integre un componente a la vez e integre fácilmente con cada libería de React._
-- **Es fácil de testear.** _Probar los reducers es una pérdida de tiempo, hace que sea más fácil probar sus componentes React._
-- **Es más fácil de revisar tipos.** _Diseñado para hacer que la mayoría de sus tipos sean inferibles._
-- **Es minimalista.** _It's just React._
+- **Es pequeño.** _Es 40 veces más pequeño._
+- **Es rápido.** _Componentizar el problema del desempeño._
+- **Es fácil de aprender.** _Seguro que ya conoces React Hooks & Context, solo úsalos, son geniales._
+- **Es fácil de integrar.** _Integra un componente a la vez e intégralo fácilmente con cada libería de React._
+- **Es fácil de testear.** _Testear los reducers es una pérdida de tiempo, hace que sea más fácil probar tus componentes React._
+- **Es más fácil de revisar tipos.** _Diseñado para hacer que la mayoría de tus tipos sean inferibles._
+- **Es minimalista.** _Es React y nada más._
 
-Así que tu decides.
+Así que tú decides.
 
-### [Docs para migrarte desde Unstated &rarr;](#migrando-desde-unstated)
+### [Docs para migrar desde Unstated &rarr;](#migrando-desde-unstated)
 
 ## Instalación
 
@@ -95,7 +95,7 @@ import { createContainer } from "unstated-next"
 
 function useCustomHook() {
   let [value, setValue] = useState()
-  let onChange = e => setValue(e.currentTarget.value)
+  let onChange = (e) => setValue(e.currentTarget.value)
   return { value, onChange }
 }
 
@@ -155,9 +155,9 @@ function ChildComponent() {
 ## Guía
 
 Si nunca antes has usado React Hooks, te recomiendo pausar e ir a leer
-[los excelentes documentos en el sitio React](https://reactjs.org/docs/hooks-intro.html).
+[la excelente documentación en la web de React](https://reactjs.org/docs/hooks-intro.html).
 
-Entonces, con Hooks, puede crear un componente como este:
+Entonces, con Hooks, puedes crear un componente como este:
 
 ```js
 function CounterDisplay() {
@@ -174,7 +174,7 @@ function CounterDisplay() {
 }
 ```
 
-Luego, si desea compartir la lógica detrás del componente, puede extraerlo
+Luego, si quieres compartir la lógica detrás del componente, puedes extraerlo
 en un hook personalizado:
 
 ```js
@@ -197,7 +197,7 @@ function CounterDisplay() {
 }
 ```
 
-Pero, ¿Qué pasa si quieres compartir el estado además de la lógica, qué haces?
+Pero, ¿qué pasa si quieres compartir el estado además de la lógica, qué haces?
 
 Aquí es donde entra en juego el context:
 
@@ -237,7 +237,7 @@ Esto es genial, es perfecto, más personas deberían escribir código como este.
 
 Pero a veces todos necesitamos un poco más de estructura y diseño de API intencional para hacerlo de manera consistente.
 
-Al introducir la función `createContainer()`, puede pensar en sus hooks personalizados como "contenedores" y tener una API que es clara y evita que lo use incorrectamente.
+Al introducir la función `createContainer()`, puedes pensar en tus hooks personalizados como "contenedores" y tener una API que es clara y evita que lo uses incorrectamente.
 
 ```js
 import { createContainer } from "unstated-next"
@@ -307,13 +307,13 @@ Aquí está la diferencia de ese cambio:
   }
 ```
 
-Si está utilizando TypeScript (que te animo a que lo aprendas si no estás en eso), esto también tiene la ventaja de hacer que la inferencia incorporada de TypeScript funcione mejor. Mientras se escriba su hook personalizado, todo lo demás simplemente funcionará.
+Si estás utilizando TypeScript (te animo a que lo aprendas si no lo estás utilizando), esto también tiene la ventaja de hacer que la inferencia incorporada de TypeScript funcione mejor. Mientras su hook personalizado estén tipados, todo lo demás simplemente funcionará.
 
 ## Tips
 
-### Tip #1: Contenedores de composición
+### Tip #1: Componer contenedores
 
-Debido a que solo estamos trabajando con React Hooks personalizados, podemos componer contenedores dentro de otros hooks.
+Debido a que solo estamos trabajando con los Hooks de React personalizados, podemos componer contenedores dentro de otros hooks.
 
 ```js
 function useCounter() {
@@ -332,9 +332,9 @@ function useResettableCounter() {
 }
 ```
 
-### Tip #2: Mantener contenedores pequeños
+### Tip #2: Mantener los contenedores
 
-Esto puede ser útil para mantener sus contenedores pequeños y enfocados. Lo que puede ser importante si desea codificar dividir la lógica en sus contenedores: simplemente muévalos a sus propios Hooks y mantenga solo el estado en los contenedores.
+Esto puede ser útil para mantener sus contenedores pequeños y enfocados. Lo que puede ser importante si deseas separar la lógica de tus contenedores: simplemente muévelos a tus propios Hooks y mantén solo el estado en los contenedores.
 
 ```js
 function useCount() {
@@ -354,7 +354,7 @@ function useCounter() {
 
 ### Tip #3: Optimizando componentes
 
-No hay que hacer "optimización" de `unstated-next`, todas las optimizaciones que podría hacer serían optimizaciones estándar de React.
+No hay que hacer "optimización" de `unstated-next`, todas las optimizaciones que podrías hacer serían optimizaciones estándar de React.
 
 #### 1) Optimización de sub-árboles caros al dividir el componente
 
@@ -488,7 +488,7 @@ function useCounter() {
 
 let Counter = createContainer(useCounter)
 
-let CounterDisplayInner = React.memo(props => {
+let CounterDisplayInner = React.memo((props) => {
   return (
     <div>
       <button onClick={props.decrement}>-</button>
@@ -542,19 +542,19 @@ Esa API es lo que es Unstated Next. En lugar de ser la "API mínima para compart
 
 Siempre he estado del lado de React. Quiero que React gane. Me gustaría ver a la comunidad abandonar las bibliotecas de administración estatal como Redux, y encontrar mejores formas de hacer uso de la cadena de herramientas incorporada de React.
 
-Si en lugar de usar Unstated, solo quieres usar React en sí, lo recomendaría encarecidamente. ¡Escribe publicaciones de blog al respecto! ¡Da charlas al respecto! Difundir su conocimiento en la comunidad.
+Si en lugar de usar Unstated, solo quieres usar React en sí, lo recomendaría encarecidamente. ¡Escribe publicaciones en tu blog al respecto! ¡Da charlas al respecto! Difunde tu conocimiento en la comunidad.
 
 ## Migrando desde `unstated`
 
 He publicado esto intencionalmente como un nombre de paquete separado porque es un restablecimiento completo en la API. De esta manera, puede instalar y migrar de forma incremental.
 
-Envíenme sus comentarios sobre ese proceso de migración, porque en los próximos meses espero recibir esos comentarios y hacer dos cosas:
+Envíame tus comentarios sobre ese proceso de migración, porque en los próximos meses espero recibir esos comentarios y hacer dos cosas:
 
-- Asegurarse que `unstated-next`cumple todas las necesidades de los usuarios de `unstated`.
-- Asegurarse que `unstated` tiene un proceso de migración limpio hacia `unstated-next`.
+- Asegurate que `unstated-next` cumple todas las necesidades de los usuarios de `unstated`.
+- Asegurate que `unstated` tiene un proceso de migración limpio hacia `unstated-next`.
 
 Puedo elegir agregar API a cualquiera de las bibliotecas para facilitar la vida de los desarrolladores. Para `unstated-next` Prometo que las API agregadas serán lo más mínimas posible e intentaré mantener la biblioteca pequeña.
 
-En el futuro, probablemente me fusionaré `unstated-next` dentro de `unstated` como una actualización mayor de versión. `unstated-next` seguirá existiendo para que pueda tener ambos `unstated@2` y `unstated-next` instalados. Luego, cuando haya terminado con la migración, puede actualizar a `unstated@3` y remover `unstated-next`(asegúrese de actualizar todas sus importaciones como lo hace ... debería ser solo una búsqueda y reemplazo).
+En el futuro, probablemente me fusionaré `unstated-next` dentro de `unstated` como una actualización mayor de versión. `unstated-next` seguirá existiendo para que pueda tener ambos `unstated@2` y `unstated-next` instalados. Luego, cuando haya terminado con la migración, puede actualizar a `unstated@3` y remover `unstated-next`(asegúrese de actualizar todas tus importaciones como lo haces... debería ser solo buscar y reemplazar).
 
-A pesar de que este es un nuevo cambio importante de API, espero poder hacer esta migración lo más fácil posible para usted. Estoy optimizando para que puedas usar las últimas API de React Hooks y no para preservar el código escrito con `Unstated.Container`'s. Siéntase libre de proporcionar comentarios sobre cómo podría hacerse mejor.
+A pesar de que este es un nuevo cambio importante de API, espero poder hacer esta migración lo más fácil posible para ti. Estoy optimizando para que puedas usar las últimas API de React Hooks y no para preservar el código escrito con `Unstated.Container`'s. Siéntete libre de proporcionar comentarios sobre cómo podría hacerse mejor.
