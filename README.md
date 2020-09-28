@@ -4,7 +4,9 @@
     <a href="README-zh-cn.md">中文</a> |
     <a href="README-ru-ru.md">Русский</a> |
     <a href="README-th-th.md">ภาษาไทย</a> |
-    <a href="README-vi-vn.md">Tiếng Việt</a>
+    <a href="README-th-th.md">ภาษาไทย</a> |
+    <a href="README-vi-vn.md">Tiếng Việt</a> |
+    <a href="README-es-spa.md">Español</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -513,10 +515,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return (
-    <p>You clicked {count} times</p>
-  )
+
+  return <p>You clicked {count} times</p>
 }
 ```
 
@@ -526,10 +526,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return useMemo(() => (
-    <p>You clicked {count} times</p>
-  ), [count])
+
+  return useMemo(() => <p>You clicked {count} times</p>, [count])
 }
 ```
 

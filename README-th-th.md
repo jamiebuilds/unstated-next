@@ -4,7 +4,8 @@
     <a href="README-zh-cn.md">中文</a> |
     <a href="README-ru-ru.md">Русский</a> |
     <a href="README-th-th.md">ภาษาไทย</a> |
-    <a href="README-vi-vn.md">Tiếng Việt</a>
+    <a href="README-vi-vn.md">Tiếng Việt</a> |
+    <a href="README-es-spa.md">Español</a>
   </strong>
   <br/>
   <sup><em>(Please contribute translations!)</em></sup>
@@ -172,8 +173,7 @@ function CounterDisplay() {
 }
 ```
 
-จากนั้นถ้าคุณต้องการ share logic behind หลังคอมโพเนนต์,  คุณสามารถดึงมันออกมาเพื่อเป็น Hooks ที่สามารถกำหนดเองได้ :
-
+จากนั้นถ้าคุณต้องการ share logic behind หลังคอมโพเนนต์, คุณสามารถดึงมันออกมาเพื่อเป็น Hooks ที่สามารถกำหนดเองได้ :
 
 ```js
 function useCounter() {
@@ -233,7 +233,7 @@ function App() {
 
 มันเยี่ยมมาก , ยอดเยี่ยม, คนส่วนมากควรเขียนโค้ดแบบนี้
 
-แต่บางครั้งเราทุกคนจำเป็นต้องมีโครงสร้างเพิ่มเติมเล็กน้อย และ โดยเพื่อ API design ให้มันถูกต้องอย่างสม่ำเสมอ 
+แต่บางครั้งเราทุกคนจำเป็นต้องมีโครงสร้างเพิ่มเติมเล็กน้อย และ โดยเพื่อ API design ให้มันถูกต้องอย่างสม่ำเสมอ
 
 โดย เริ่มต้นฟังก์ชัน `createContainer()` , คุณสามารถใช้ Hooks แบบกำหนดเองได้ "containers" และมี API คอยเตือนและ ป้องกันคุณจากการใช้งานผิดพลาด
 
@@ -512,10 +512,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return (
-    <p>You clicked {count} times</p>
-  )
+
+  return <p>You clicked {count} times</p>
 }
 ```
 
@@ -525,10 +523,8 @@ function CounterDisplay(props) {
 function CounterDisplay(props) {
   let counter = Counter.useContainer()
   let count = counter.count
-  
-  return useMemo(() => (
-    <p>You clicked {count} times</p>
-  ), [count])
+
+  return useMemo(() => <p>You clicked {count} times</p>, [count])
 }
 ```
 
