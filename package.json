@@ -15,6 +15,10 @@
 		"build": "rm -rf dist && microbundle --external react --globals react=React --strict --no-compress",
 		"test": "ava"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jamiebuilds/unstated-next.git"
+	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
