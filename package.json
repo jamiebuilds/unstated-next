@@ -1,46 +1,64 @@
 {
-	"name": "unstated-next",
-	"version": "1.1.0",
-	"description": "200 bytes to never think about React state management libraries ever again",
-	"source": "src/unstated-next.tsx",
-	"main": "dist/unstated-next.js",
-	"module": "dist/unstated-next.mjs",
-	"unpkg": "dist/unstated-next.umd.js",
-	"types": "dist/unstated-next.d.ts",
-	"amdName": "UnstatedNext",
-	"sideEffects": false,
-	"scripts": {
-		"format": "prettier --write '**'",
-		"example": "parcel example/index.html --out-dir example/dist",
-		"build": "rm -rf dist && microbundle --external react --globals react=React --strict --no-compress",
-		"test": "ava"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/react": "^16.8.15",
-		"@types/react-dom": "^16.8.4",
-		"ava": "^1.4.1",
-		"husky": "^2.1.0",
-		"lint-staged": "^8.1.5",
-		"microbundle": "^0.11.0",
-		"parcel": "^1.12.3",
-		"prettier": "^1.17.0",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"ts-node": "^8.1.0",
-		"typescript": "^3.4.5"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*": [
-			"prettier --write",
-			"git add"
-		]
-	}
+  "name": "@jvanderen1/unstated-next",
+  "version": "1.0.0",
+  "description": "Up-to-date version of everyone's favorite state management library unstated-next",
+  "keywords": [
+    "unstated",
+    "react",
+    "hooks",
+    "context",
+    "state",
+    "react-hooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jvanderen1/unstated-next"
+  },
+  "license": "MIT",
+  "author": "<livetoscout@gmail.com>",
+  "sideEffects": false,
+  "main": "dist/unstated-next.cjs.js",
+  "module": "dist/unstated-next.esm.js",
+  "source": "src/index.ts",
+  "browser": "dist/unstated-next.umd.js",
+  "scripts": {
+    "build": "npm run clean:dist && parcel build",
+    "clean": "npm run clean:dist && npm run clean:types && npm run clean:node-modules",
+    "clean:dist": "rm -rf dist/",
+    "clean:node-modules": "rm -rf node_modules/",
+    "clean:types": "tsc --build --clean",
+    "clean-install": "npm run clean && npm install",
+    "dev": "parcel example/index.html",
+    "lint": "eslint './'",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install",
+    "pretty": "prettier --check './'",
+    "pretty:fix": "prettier --write './'",
+    "types-check": "tsc --skipLibCheck --noEmit"
+  },
+  "devDependencies": {
+    "@parcel/transformer-typescript-types": "^2.0.0-rc.0",
+    "@swc/cli": "^0.1.49",
+    "@swc/core": "^1.2.80",
+    "@types/node": "^16.7.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "parcel": "^2.0.0-beta.3.1",
+    "prettier": "^2.3.2",
+    "prop-types": "latest",
+    "react-dom": "latest",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "prop-types": ">= 15.5.0",
+    "react": ">= 16.8.0"
+  }
 }

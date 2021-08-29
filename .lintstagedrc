@@ -1,0 +1,11 @@
+{
+  "*.{js,jsx}": [
+    "npm run lint",
+    "npm run pretty"
+  ],
+  "*.{ts,tsx}": [
+    "bash -c 'npm run types-check'",
+    "npm run lint",
+    "npm run pretty"
+  ]
+}

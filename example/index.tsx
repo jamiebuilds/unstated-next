@@ -1,40 +1,40 @@
-import React, { useState } from "react"
-import { createContainer } from "../src/unstated-next"
-import { render } from "react-dom"
+import { useState } from 'react'
+import { render } from 'react-dom'
+import { createContainer } from '../src'
 
 function useCounter(initialState = 0) {
-	let [count, setCount] = useState(initialState)
-	let decrement = () => setCount(count - 1)
-	let increment = () => setCount(count + 1)
-	return { count, decrement, increment }
+  const [count, setCount] = useState(initialState)
+  const decrement = () => setCount(count - 1)
+  const increment = () => setCount(count + 1)
+  return { count, decrement, increment }
 }
 
-let Counter = createContainer(useCounter)
+const Counter = createContainer(useCounter)
 
 function CounterDisplay() {
-	let counter = Counter.useContainer()
-	return (
-		<div>
-			<button onClick={counter.decrement}>-</button>
-			<span>{counter.count}</span>
-			<button onClick={counter.increment}>+</button>
-		</div>
-	)
+  const counter = Counter.useContext()
+  return (
+    <div>
+      <button onClick={counter.decrement}>-</button>
+      <span>{counter.count}</span>
+      <button onClick={counter.increment}>+</button>
+    </div>
+  )
 }
 
 function App() {
-	return (
-		<Counter.Provider>
-			<CounterDisplay />
-			<Counter.Provider initialState={2}>
-				<div>
-					<div>
-						<CounterDisplay />
-					</div>
-				</div>
-			</Counter.Provider>
-		</Counter.Provider>
-	)
+  return (
+    <Counter.Provider>
+      <CounterDisplay />
+      <Counter.Provider initialState={2}>
+        <div>
+          <div>
+            <CounterDisplay />
+          </div>
+        </div>
+      </Counter.Provider>
+    </Counter.Provider>
+  )
 }
 
-render(<App />, document.getElementById("root"))
+render(<App />, document.getElementById('root'))
