@@ -34,6 +34,7 @@
     "prepare": "husky install",
     "pretty": "prettier --check './'",
     "pretty:fix": "prettier --write './'",
+    "test": "",
     "types-check": "tsc --skipLibCheck --noEmit"
   },
   "devDependencies": {
