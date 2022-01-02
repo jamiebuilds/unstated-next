@@ -2,17 +2,18 @@ import React from "react"
 
 const EMPTY: unique symbol = Symbol()
 
-export interface ContainerProviderProps<State = void> {
+export type ContainerProviderProps<
+	State extends any
+> = React.PropsWithChildren<{
 	initialState?: State
-	children: React.ReactNode
-}
+}>
 
-export interface Container<Value, State = void> {
+export interface Container<Value, State extends any> {
 	Provider: React.ComponentType<ContainerProviderProps<State>>
 	useContainer: () => Value
 }
 
-export function createContainer<Value, State = void>(
+export function createContainer<Value, State extends any>(
 	useHook: (initialState?: State) => Value,
 ): Container<Value, State> {
 	let Context = React.createContext<Value | typeof EMPTY>(EMPTY)
@@ -33,7 +34,7 @@ export function createContainer<Value, State = void>(
 	return { Provider, useContainer }
 }
 
-export function useContainer<Value, State = void>(
+export function useContainer<Value, State extends any>(
 	container: Container<Value, State>,
 ): Value {
 	return container.useContainer()
