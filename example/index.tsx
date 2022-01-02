@@ -3,16 +3,24 @@ import { createContainer } from "../src/unstated-next"
 import { render } from "react-dom"
 
 function useCounter(initialState = 0) {
-	let [count, setCount] = useState(initialState)
-	let decrement = () => setCount(count - 1)
-	let increment = () => setCount(count + 1)
+	const [count, setCount] = useState(initialState)
+	const decrement = () => setCount(count - 1)
+	const increment = () => setCount(count + 1)
 	return { count, decrement, increment }
 }
 
-let Counter = createContainer(useCounter)
+const Counter = createContainer(useCounter)
+
+function useRequiredCounter(step: number) {
+	const { count } = Counter.useContainer()
+	const computed = count + step
+	return { count, step, computed }
+}
+
+const RequiredCounter = createContainer(useRequiredCounter)
 
 function CounterDisplay() {
-	let counter = Counter.useContainer()
+	const counter = Counter.useContainer()
 	return (
 		<div>
 			<button onClick={counter.decrement}>-</button>
@@ -22,14 +30,26 @@ function CounterDisplay() {
 	)
 }
 
+function RequiredCounterDisplay() {
+	const { count, step, computed } = RequiredCounter.useContainer()
+	return (
+		<div>
+			Computed Value With Step {step}: {count} + {step} = {computed}
+		</div>
+	)
+}
+
 function App() {
 	return (
-		<Counter.Provider>
+		<Counter.Provider initialState={[]}>
 			<CounterDisplay />
-			<Counter.Provider initialState={2}>
+			<Counter.Provider initialState={[2]}>
 				<div>
 					<div>
 						<CounterDisplay />
+						<RequiredCounter.Provider initialState={[2]}>
+							<RequiredCounterDisplay />
+						</RequiredCounter.Provider>
 					</div>
 				</div>
 			</Counter.Provider>
