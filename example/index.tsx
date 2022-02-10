@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { createContainer } from "../src/unstated-next"
+import createContainer from "../src/liftHook"
 import { render } from "react-dom"
 
 function useCounter(initialState = 0) {
@@ -26,7 +26,7 @@ function App() {
 	return (
 		<Counter.Provider>
 			<CounterDisplay />
-			<Counter.Provider initialState={2}>
+			<Counter.Provider>
 				<div>
 					<div>
 						<CounterDisplay />
